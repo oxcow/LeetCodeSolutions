@@ -28,10 +28,17 @@ public class ReverseInteger {
     public static int reverse(int x) {
         int r = 0;
         int m = 0;
+        boolean neg = true;
+
+        if (x >= 0) neg = false;
+
         while (x != 0) {
             m = x % 10;
             x = x / 10;
             r = m + r * 10;
+            if ((neg && r > 0) || (!neg && r < 0)) {
+                return 0;
+            }
         }
         return r;
     }
