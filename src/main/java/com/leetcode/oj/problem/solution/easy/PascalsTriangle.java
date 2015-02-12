@@ -52,10 +52,22 @@ public class PascalsTriangle {
         return pascals;
     }
 
+    public List<List<Integer>> generate1(int numRows) {
+        List<List<Integer>> allrows = new ArrayList<>();
+        List<Integer> row = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            row.add(0, 1);// 第一位插入1，数组长度加1！ COOL!
+            for (int j = 1; j < row.size() - 1; j++) {
+                row.set(j, row.get(j) + row.get(j + 1));// 原row被插入了一位,所以上一行的值从 1 开始
+            }
+            allrows.add(new ArrayList<>(row));
+        }
+        return allrows;
+    }
 
     public static void main(String... args) throws Exception {
         PascalsTriangle pascalsTriangle = new PascalsTriangle();
-        List<List<Integer>> pascals = pascalsTriangle.generate(34);
+        List<List<Integer>> pascals = pascalsTriangle.generate1(5);
         for (List<Integer> rowList : pascals) {
             System.out.print("[");
             for (Integer integer : rowList) {

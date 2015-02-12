@@ -16,8 +16,17 @@ public class PascalsTriangleTest {
     @Test
     public void testGenerate() throws Exception {
         PascalsTriangle pascalsTriangle = new PascalsTriangle();
-        for (int i = 1; i < 15; i++) {
+        for (int i = 1; i < 34; i++) {
             List<List<Integer>> pascals = pascalsTriangle.generate(i);
+            Assert.assertTrue(isPascalsTriangleSimpleTest(pascals));
+        }
+    }
+
+    @Test
+    public void testGenrate1() throws Exception {
+        PascalsTriangle pascalsTriangle = new PascalsTriangle();
+        for (int i = 1; i < 34; i++) {
+            List<List<Integer>> pascals = pascalsTriangle.generate1(i);
             Assert.assertTrue(isPascalsTriangleSimpleTest(pascals));
         }
     }
@@ -45,7 +54,7 @@ public class PascalsTriangleTest {
 
             //第n行数字和为2的(n-1)次方
             {
-                int sum = 0;
+                long sum = 0; // sum 有可能超出 Integer.MAX_VALUE
                 for (Integer colNum : rowNums) {
                     sum += colNum;
                 }
