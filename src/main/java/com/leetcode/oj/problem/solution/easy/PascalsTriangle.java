@@ -1,8 +1,11 @@
 package com.leetcode.oj.problem.solution.easy;
 
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,6 +26,7 @@ import java.util.List;
  * Created by leeyee.li on 2015/2/2.
  */
 public class PascalsTriangle {
+    private static final Logger logger = LoggerFactory.getLogger(PascalsTriangle.class);
 
     public static Integer getValueFromList(List<Integer> rowList, int index) {
         if (index < 0 || rowList == null || rowList.size() <= index) {
@@ -36,24 +40,25 @@ public class PascalsTriangle {
 
         List<List<Integer>> pascals = Lists.newArrayList();
 
-        for (int row = 1; row <= numRows; row++) {
-            if (row == 1) {
-                List<Integer> topList = new ArrayList<Integer>(1);
-                topList.add(1);
-                pascals.add(topList);
-            } else {
-                List<Integer> rowList = new ArrayList<Integer>(row);
-
-                List<Integer> preRowList = pascals.get(row - 2);
-
-                for (int col = 0; col < row; col++) {
+        for (int row = 0; row < numRows; row++) {
+            logger.info("-----------------row:{}-----------------", row + 1);
+            Integer rows[] = new Integer[row + 1];
+            rows[0] = 1;
+            if (row > 0) {
+                rows[row] = 1; // first and end number certainly equal to 1
+                List<Integer> preRowList = pascals.get(row - 1);
+                for (int col = 1; col <= row / 2; col++) { // pascals triangle is symmetric, so loop half!
                     int left = getValueFromList(preRowList, col - 1);
                     int right = getValueFromList(preRowList, col);
-                    rowList.add(left + right);
-
+                    int value = left + right;
+                    rows[col] = value;
+                    logger.info("col={},row={},val={}, size={}", col, row, value, rows.length);
+                    if (col < row - col)
+                        rows[row - col] = value;
                 }
-                pascals.add(rowList);
             }
+            logger.info("rowList={}", Arrays.asList(rows));
+            pascals.add(Arrays.asList(rows));
         }
         return pascals;
     }
