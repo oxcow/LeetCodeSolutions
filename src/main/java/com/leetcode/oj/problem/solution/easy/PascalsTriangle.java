@@ -28,38 +28,40 @@ import java.util.List;
 public class PascalsTriangle {
     private static final Logger logger = LoggerFactory.getLogger(PascalsTriangle.class);
 
-    public static Integer getValueFromList(List<Integer> rowList, int index) {
-        if (index < 0 || rowList == null || rowList.size() <= index) {
-            return 0;
-        } else {
-            return rowList.get(index);
-        }
-    }
+    public List<List<Integer>> generate(int numRows) {
 
-    public static List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascals = new ArrayList<>(numRows);
 
-        List<List<Integer>> pascals = Lists.newArrayList();
+        Integer rowCache[] = null;
 
         for (int row = 0; row < numRows; row++) {
-            logger.info("-----------------row:{}-----------------", row + 1);
             Integer rows[] = new Integer[row + 1];
             rows[0] = 1;
             if (row > 0) {
                 rows[row] = 1; // first and end number certainly equal to 1
-                List<Integer> preRowList = pascals.get(row - 1);
                 for (int col = 1; col <= row / 2; col++) { // pascals triangle is symmetric, so loop half!
-                    int left = getValueFromList(preRowList, col - 1);
-                    int right = getValueFromList(preRowList, col);
-                    int value = left + right;
+                    int value = rowCache[col - 1] + rowCache[col];
                     rows[col] = value;
-                    logger.info("col={},row={},val={}, size={}", col, row, value, rows.length);
                     if (col < row - col)
                         rows[row - col] = value;
                 }
             }
-            logger.info("rowList={}", Arrays.asList(rows));
+            rowCache = rows;
             pascals.add(Arrays.asList(rows));
         }
         return pascals;
+    }
+
+
+    public static void main(String... args) throws Exception {
+        PascalsTriangle pascalsTriangle = new PascalsTriangle();
+        List<List<Integer>> pascals = pascalsTriangle.generate(34);
+        for (List<Integer> rowList : pascals) {
+            System.out.print("[");
+            for (Integer integer : rowList) {
+                System.out.print(integer + ",");
+            }
+            System.out.println("]");
+        }
     }
 }

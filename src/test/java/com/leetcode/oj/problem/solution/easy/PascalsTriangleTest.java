@@ -15,9 +15,18 @@ public class PascalsTriangleTest {
 
     @Test
     public void testGenerate() throws Exception {
+        PascalsTriangle pascalsTriangle = new PascalsTriangle();
         for (int i = 1; i < 15; i++) {
-            List<List<Integer>> pascals = PascalsTriangle.generate(i);
+            List<List<Integer>> pascals = pascalsTriangle.generate(i);
             Assert.assertTrue(isPascalsTriangleSimpleTest(pascals));
+        }
+    }
+
+    private Integer getValueFromList(List<Integer> rowList, int index) {
+        if (index < 0 || rowList == null || rowList.size() <= index) {
+            return 0;
+        } else {
+            return rowList.get(index);
         }
     }
 
@@ -53,7 +62,7 @@ public class PascalsTriangleTest {
                         return false;
                     }
                     //每个数等于它上方两数之和。
-                    int preNumSum = PascalsTriangle.getValueFromList(pascalsTriangles.get(n - 1), m - 1) + PascalsTriangle.getValueFromList(pascalsTriangles.get(n - 1), m);
+                    int preNumSum = getValueFromList(pascalsTriangles.get(n - 1), m - 1) + getValueFromList(pascalsTriangles.get(n - 1), m);
                     if (rowNums.get(m) != preNumSum) {
                         return false;
                     }
