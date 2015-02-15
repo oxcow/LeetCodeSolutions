@@ -25,7 +25,7 @@ public class PascalsTriangleTest {
     @Test
     public void testGenrate1() throws Exception {
         PascalsTriangle pascalsTriangle = new PascalsTriangle();
-        for (int i = 1; i < 34; i++) {
+        for (int i = 1; i < 35; i++) {
             List<List<Integer>> pascals = pascalsTriangle.generate1(i);
             Assert.assertTrue(isPascalsTriangleSimpleTest(pascals));
         }
