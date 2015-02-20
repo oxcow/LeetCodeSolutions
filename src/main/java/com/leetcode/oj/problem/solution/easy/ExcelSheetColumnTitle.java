@@ -21,7 +21,7 @@ package com.leetcode.oj.problem.solution.easy;
  */
 public class ExcelSheetColumnTitle {
     public String convertToTitle(int n) {
-        if (n < 1 && n > 16384) return null; // Excel 2007 row title from 'A' to 'XFD'
+        // if (n < 1 || n > 16384) return null; // Excel 2007 row title from 'A' to 'XFD'
         String columnTitle = "";
         while (n > 26) {
             int mod = n % 26;
