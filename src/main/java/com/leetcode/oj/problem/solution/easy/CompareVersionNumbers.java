@@ -27,27 +27,14 @@ public class CompareVersionNumbers {
         int iVer1Len = versions1.length;
         int iVer2Len = versions2.length;
 
-        int iMinLen = Math.min(iVer1Len, iVer2Len);
+        int iMaxLen = Math.max(iVer1Len, iVer2Len);
 
-        // 比较相同部分
-        for (int i = 0; i < iMinLen; i++) {
-            int subVer1Int = Integer.valueOf(versions1[i]).intValue();
-            int subVer2Int = Integer.valueOf(versions2[i]).intValue();
+        for (int i = 0; i < iMaxLen; i++) {
+            int subVer1Int = i < iVer1Len ? Integer.valueOf(versions1[i]) : 0; // 超出数组范围返回0
+            int subVer2Int = i < iVer2Len ? Integer.valueOf(versions2[i]) : 0;
             if (subVer1Int == subVer2Int) continue;
             return subVer1Int > subVer2Int ? 1 : -1;
         }
-
-        // 判断超出的部分
-        if (iVer1Len > iVer2Len) {
-            for (int i = iVer2Len; i < iVer1Len; i++) { // 判断超出部分是否都为0
-                if (Integer.valueOf(versions1[i]).intValue() != 0) return 1;
-            }
-            return 0;
-        } else {
-            for (int i = iVer1Len; i < iVer2Len; i++) {
-                if (Integer.valueOf(versions2[i]).intValue() != 0) return -1;
-            }
-            return 0;
-        }
+        return 0;
     }
 }
