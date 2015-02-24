@@ -1,7 +1,7 @@
 package com.leetcode.oj.problem.solution.easy;
 
 /**
- * URL: <a href="https://oj.leetcode.com/problems/compare-version-numbers/">Compare Version Numbers </a>f
+ * URL: <a href="https://oj.leetcode.com/problems/compare-version-numbers/">Compare Version Numbers </a>
  * <p/>
  * Compare two version numbers version1 and version2.
  * If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
