@@ -6,6 +6,14 @@ import org.slf4j.LoggerFactory;
 /**
  * URL: <a href="https://oj.leetcode.com/problems/add-binary/">Add Binary</a>
  * <p/>
+ * About adder's algorithm,you can see <a href="http://en.wikipedia.org/wiki/Adder_%28electronics%29">Adder (electronics)</a> wiki.
+ * <p/>
+ * It's core is:
+ * <pre>
+ *      S = A ^ B ^ C
+ *      C =( A ^ B) & ( C | ( A & B) )
+ * </pre>
+ * <p/>
  * Given two binary strings, return their sum (also a binary string).
  * <p/>
  * For example,
@@ -18,7 +26,6 @@ import org.slf4j.LoggerFactory;
  * Created by leeyee.li on 2015/2/22.
  */
 public class AddBinary {
-    private static final Logger logger = LoggerFactory.getLogger(AddBinary.class);
 
     public String addBinary(String a, String b) {
         int iALen = a.length();
