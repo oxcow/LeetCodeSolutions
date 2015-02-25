@@ -25,7 +25,7 @@ public class ExcelSheetColumnNumber {
         int rowNum = 0;
         for (int i = 0; i < str.length(); i++) {
             // rowNum += (Integer.valueOf(str.charAt(i)) - 64) * (long) Math.pow(26, iLen - 1 - i);
-            rowNum = rowNum * 26 + (Integer.valueOf(str.charAt(i)) - 64); // Ignore Integer Overflow
+            rowNum = rowNum * 26 + str.charAt(i) - 64; // Ignore Integer Overflow
         }
         return rowNum;
     }
