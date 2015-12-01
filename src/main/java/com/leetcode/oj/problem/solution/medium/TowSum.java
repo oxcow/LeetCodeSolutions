@@ -1,5 +1,13 @@
 package com.leetcode.oj.problem.solution.medium;
 
+import com.google.common.base.Stopwatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 /**
  * URL: <a href="https://leetcode.com/problems/two-sum/">Two Sum</a>
  * <p/>
@@ -24,20 +32,39 @@ package com.leetcode.oj.problem.solution.medium;
  * Created by leeyee.li on 2015/11/11.
  */
 public class TowSum {
+    private static final Logger logger = LoggerFactory.getLogger(TowSum.class);
 
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSumUseLoop(int[] nums, int target) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
         int result[] = null;
         int iLen = nums.length;
         for (int i = 0; i < iLen; i++) {
             for (int j = i + 1; j < iLen; j++) {
                 if (nums[i] + nums[j] == target) {
-                    //if (nums[i] <= nums[j])
                     result = new int[]{i + 1, j + 1};
                 }
             }
         }
+        logger.info("twoSumUseLoop({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
         return result;
     }
 
+    public int[] towSumUseHashMap(int[] nums, int target) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        Map<Integer, Integer> map = new HashMap<>();
+        int result[] = null;
 
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                result = new int[]{map.get(nums[i]) + 1, i + 1};
+                break;
+            } else {
+                map.put(target - nums[i], i);
+            }
+        }
+
+        logger.info("towSumUseHashMap({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+        return result;
+
+    }
 }
