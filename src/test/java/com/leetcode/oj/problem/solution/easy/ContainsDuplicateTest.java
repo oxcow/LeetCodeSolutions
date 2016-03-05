@@ -46,7 +46,6 @@ public class ContainsDuplicateTest {
     @Test
     public void testContainsDuplicate() throws Exception {
         for (TestCase testCase : testCases) {
-            System.out.println(testCase.result + " : " + testCase.nums);
             Assert.assertEquals(testCase.result, containsDuplicate.containsDuplicate(testCase.nums));
         }
     }
