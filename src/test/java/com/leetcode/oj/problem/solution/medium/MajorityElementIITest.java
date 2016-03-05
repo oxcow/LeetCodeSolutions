@@ -25,7 +25,38 @@ public class MajorityElementIITest {
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElement(new int[]{2, 2}).toArray());
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElement(new int[]{2, 2}).toArray());
 
-        logger.info("test case spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+        logger.info("testMajorityElement spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
 
+    }
+
+    @Test
+    public void testMajorityElementUseMapLambda() throws Exception {
+        MajorityElementII majorityElementII = new MajorityElementII();
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        Assert.assertArrayEquals(new Object[]{2, 3}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 1, 2, 3, 2, 3, 3}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 1, 2, 3, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 1, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{1}, majorityElementII.majorityElementUseMapLambda(new int[]{1}).toArray());
+        Assert.assertArrayEquals(new Object[]{1, 2}, majorityElementII.majorityElementUseMapLambda(new int[]{1, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 2}).toArray());
+
+
+        logger.info("testMajorityElementUseMapLambda spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+    }
+    @Test
+    public void testMajorityElementUseMap() throws Exception {
+        MajorityElementII majorityElementII = new MajorityElementII();
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        Assert.assertArrayEquals(new Object[]{2, 3}, majorityElementII.majorityElementUseMap(new int[]{2, 1, 2, 3, 2, 3, 3}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMap(new int[]{2, 1, 2, 3, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMap(new int[]{2, 1, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{1}, majorityElementII.majorityElementUseMap(new int[]{1}).toArray());
+        Assert.assertArrayEquals(new Object[]{1, 2}, majorityElementII.majorityElementUseMap(new int[]{1, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMap(new int[]{2, 2}).toArray());
+        Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMap(new int[]{2, 2}).toArray());
+
+
+        logger.info("testMajorityElementUseMap spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 }
