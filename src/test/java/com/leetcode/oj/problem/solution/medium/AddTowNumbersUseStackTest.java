@@ -69,7 +69,7 @@ public class AddTowNumbersUseStackTest {
                         construct(new Integer[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9})).toString());
 
 
-        int maxLen = 9000;
+        int maxLen = 10000;
         Integer integer[] = new Integer[maxLen];
         for (int i = 0; i < maxLen; i++) {
             integer[i] = i + 1;

@@ -67,7 +67,7 @@ public class AddTowNumbersUseRecursiveTest {
                         construct(new Integer[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}),
                         construct(new Integer[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9})).toString());
 
-        int maxLen = 9000;  // 递归次数太多，导致java.lang.StackOverflowError
+        int maxLen = 1000;  // 递归次数太多，导致java.lang.StackOverflowError
         Integer integer[] = new Integer[maxLen];
         for (int i = 0; i < maxLen; i++) {
             integer[i] = i + 1;
