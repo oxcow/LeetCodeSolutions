@@ -14,21 +14,21 @@ import java.util.Stack;
 public class PlusOne {
 
     public int[] plusOne(int[] digits) {
-        Stack<Integer> stack = new Stack<>();
         int mod = 1;
         for (int i = digits.length - 1; i >= 0; --i) {
             int digit = digits[i] + mod;
-            stack.push(digit % 10);
+            digits[i] = digit % 10;
             mod = digit / 10;
         }
         if (mod != 0) {
-            stack.push(mod);
+            int[] result = new int[digits.length + 1];
+            result[0] = mod;
+            for (int i = 0; i < digits.length; i++) {
+                result[i + 1] = digits[i];
+            }
+            return result;
+        } else {
+            return digits;
         }
-        int iLen = stack.size();
-        int[] result = new int[iLen];
-        for (int i = 0; i < iLen; i++) {
-            result[i] = stack.pop();
-        }
-        return result;
     }
 }
