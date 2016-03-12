@@ -26,4 +26,13 @@ public class PowerOfTwo {
             }
         }
     }
+
+    public boolean isPowerOfTwoNoLoop(int n) {
+        if (n == 1) return true;
+        if (n < 2) return false;
+
+        // 找到2的n次方最大的整数，用待检测数取余，结果等于0则肯定是2的n次方
+        int maxIntPowOfTwo = 1073741824; // 2^30
+        return maxIntPowOfTwo % n == 0;
+    }
 }
