@@ -15,35 +15,20 @@ public class PlusOne {
 
     public int[] plusOne(int[] digits) {
         Stack<Integer> stack = new Stack<>();
-
-        int mod = 0;
-        int plusOne = ++digits[digits.length - 1];
-        if (plusOne > 9) {
-            mod = plusOne / 10;
-            stack.push(plusOne % 10);
-        } else {
-            stack.push(plusOne);
-        }
-        for (int i = digits.length - 2; i >= 0; i--) {
-            plusOne = digits[i] + mod;
-            if (plusOne > 9) {
-                mod = plusOne / 10;
-                stack.push(plusOne % 10);
-            } else {
-                stack.push(plusOne);
-                mod = 0;
-            }
+        int mod = 1;
+        for (int i = digits.length - 1; i >= 0; --i) {
+            int digit = digits[i] + mod;
+            stack.push(digit % 10);
+            mod = digit / 10;
         }
         if (mod != 0) {
             stack.push(mod);
         }
-        int size = stack.size();
-        int[] result = new int[size];
-
-        for (int i = 0; i < size; i++) {
+        int iLen = stack.size();
+        int[] result = new int[iLen];
+        for (int i = 0; i < iLen; i++) {
             result[i] = stack.pop();
         }
-
         return result;
     }
 }
