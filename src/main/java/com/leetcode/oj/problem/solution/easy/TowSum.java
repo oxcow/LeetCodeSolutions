@@ -1,4 +1,4 @@
-package com.leetcode.oj.problem.solution.medium;
+package com.leetcode.oj.problem.solution.easy;
 
 import com.google.common.base.Stopwatch;
 import org.slf4j.Logger;

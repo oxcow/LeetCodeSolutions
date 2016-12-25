@@ -1,7 +1,8 @@
-package com.leetcode.oj.problem.solution.medium;
+package com.leetcode.oj.problem.solution.easy;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.leetcode.oj.problem.solution.easy.TowSum;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
