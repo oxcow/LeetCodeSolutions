@@ -1,19 +1,23 @@
 package com.leetcode.oj.problem.solution.medium;
 
-import java.util.BitSet;
+import com.google.common.base.Stopwatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * URL: <a href="https://leetcode.com/problems/total-hamming-distance/">Total Hamming Distance</a>
- * <p>
+ * <p/>
  * The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
- * <p>
+ * <p/>
  * Now your job is to find the total Hamming distance between all pairs of the given numbers.
- * <p>
+ * <p/>
  * Example:
  * Input: 4, 14, 2
- * <p>
+ * <p/>
  * Output: 6
- * <p>
+ * <p/>
  * Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just
  * showing the four bits relevant in this case). So the answer will be:
  * HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
@@ -25,6 +29,8 @@ import java.util.BitSet;
  * @see com.leetcode.oj.problem.solution.easy.HammingDistance
  */
 public class TotalHammingDistance {
+    private static final Logger logger = LoggerFactory.getLogger(TotalHammingDistance.class);
+
     public int totalHammingDistance(int[] nums) {
         int iLen = nums.length;
         int total = 0;
@@ -32,20 +38,37 @@ public class TotalHammingDistance {
             int x = nums[i];
             for (int j = i + 1; j < iLen; j++) {
                 int y = nums[j];
+                total += Integer.bitCount(x ^ y);
+            }
+        }
+        return total;
+    }
 
-                int result = x ^ y;
-                int count = 0;
-                while (result > 1) {
-                    int mod = result % 2;
-                    if (mod == 1) {
-                        ++count;
-                    }
-                    result >>= 1;
-                }
-                total += result == 1 ? count + 1 : count;
+    public int totalHammingDistance2(int[] nums) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        int iLen = nums.length;
+
+        int iGroupLen = iLen * (iLen - 1) / 2; // 两两组合后的个数。Cn2 = n*(n-1)/2*(2-1)
+        int[] groups = new int[iGroupLen];
+
+        int total = 0, iGroup = 0;
+        for (int i = 0; i < iLen - 1; i++) {
+            int x = nums[i];
+            for (int j = i + 1; j < iLen; j++) {
+                int y = nums[j];
+                groups[iGroup++] = x ^ y;
             }
         }
 
+        logger.debug("x xor y spend: {}ms", stopwatch.elapsed(TimeUnit.MILLISECONDS));
+
+        for (int i = 0; i < groups.length; i++) {
+            total += Integer.bitCount(groups[i]);
+        }
+
+        logger.debug("total spend: {}ms", stopwatch.elapsed(TimeUnit.MILLISECONDS));
+
         return total;
     }
+
 }

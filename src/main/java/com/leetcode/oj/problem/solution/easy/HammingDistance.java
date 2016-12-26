@@ -4,29 +4,29 @@ import java.util.BitSet;
 
 /**
  * URL: <a href="https://leetcode.com/problems/hamming-distance/">Hamming Distance</a>
- * <p>
+ * <p/>
  * The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
- * <p>
+ * <p/>
  * Given two integers x and y, calculate the Hamming distance.
- * <p>
+ * <p/>
  * Note:
  * 0 ≤ x, y < 231.
- * <p>
+ * <p/>
  * Example:
- * <p>
+ * <p/>
  * Input: x = 1, y = 4
- * <p>
+ * <p/>
  * Output: 2
- * <p>
+ * <p/>
  * Explanation:
  * 1   (0 0 0 1)
- * <p>
+ * <p/>
  * 4   (0 1 0 0)
- * <p>
+ * <p/>
  * ↑   ↑
- * <p>
+ * <p/>
  * The above arrows point to positions where the corresponding bits are different.
- * <p>
+ * <p/>
  * Created by leeyee on 16-12-25.
  */
 public class HammingDistance {
@@ -34,14 +34,11 @@ public class HammingDistance {
     public int hammingDistance(int x, int y) {
         int result = x ^ y;
         int count = 0;
-        while (result > 1) {
-            int mod = result % 2;
-            if (mod == 1) {
-                ++count;
-            }
+        while (result >= 1) {
+            count += result & 1;
             result >>= 1;
         }
-        return result == 1 ? count + 1 : count;
+        return count;
     }
 
     public int hammingDistanceUseBitSet(int x, int y) {
