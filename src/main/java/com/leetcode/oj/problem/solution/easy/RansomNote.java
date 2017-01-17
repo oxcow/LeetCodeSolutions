@@ -43,6 +43,11 @@ public class RansomNote {
                 ransomNoteCounter.put(c, 1);
             }
         }
+
+        if (magazineCounter.keySet().size() < ransomNoteCounter.keySet().size()) {
+            return false;
+        }
+
         for (Map.Entry<Character, Integer> characterIntegerEntry : ransomNoteCounter.entrySet()) {
             Character noteChar = characterIntegerEntry.getKey();
             Integer counter = characterIntegerEntry.getValue();
