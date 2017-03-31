@@ -2,14 +2,13 @@ package com.leetcode.oj.problem.solution.easy;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import com.leetcode.oj.problem.solution.easy.TowSum;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
-public class TowSumTest {
+public class TowSumIITest {
 
     public static final Joiner JOINER_COMMA = Joiner.on(",");
 
@@ -27,7 +26,7 @@ public class TowSumTest {
 
     @Test
     public void testTowSum() throws Exception {
-        TowSum towSum = new TowSum();
+        TowSumII towSum = new TowSumII();
         int[] r1 = towSum.twoSumUseLoop(new int[]{2, 7, 11, 15}, 9);
         Assert.assertEquals("1,2", int2String(r1));
 
@@ -49,7 +48,7 @@ public class TowSumTest {
     @Test
     public void testTowSumUseHashMap() throws Exception {
 
-        TowSum towSum = new TowSum();
+        TowSumII towSum = new TowSumII();
         int[] r1 = towSum.towSumUseHashMap(new int[]{2, 7, 11, 15}, 9);
         Assert.assertEquals("1,2", int2String(r1));
 

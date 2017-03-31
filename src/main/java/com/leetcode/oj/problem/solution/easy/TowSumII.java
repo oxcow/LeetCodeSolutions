@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * URL: <a href="https://leetcode.com/problems/two-sum/">Two Sum</a>
+ * URL: <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/#/description">Two Sum II - Input array is sorted</a>
  * <p/>
  * Given an array of integers, find two numbers such that they add up to a specific target number.
  * <p/>
@@ -30,9 +30,10 @@ import java.util.concurrent.TimeUnit;
  * We could reduce the runtime complexity of looking up a value to O(1) using a hash map that maps a value to its index.
  * <p/>
  * Created by leeyee.li on 2015/11/11.
+ * Updated by leeyee on 2017/03/31.
  */
-public class TowSum {
-    private static final Logger logger = LoggerFactory.getLogger(TowSum.class);
+public class TowSumII {
+    private static final Logger logger = LoggerFactory.getLogger(TowSumII.class);
 
     public int[] twoSumUseLoop(int[] nums, int target) {
         Stopwatch stopwatch = Stopwatch.createStarted();
