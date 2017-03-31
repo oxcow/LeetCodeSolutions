@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class TowSumIITest {
+public class TwoSumIITest {
 
     public static final Joiner JOINER_COMMA = Joiner.on(",");
 
@@ -26,7 +26,7 @@ public class TowSumIITest {
 
     @Test
     public void testTowSum() throws Exception {
-        TowSumII towSum = new TowSumII();
+        TwoSumII towSum = new TwoSumII();
         int[] r1 = towSum.twoSumUseLoop(new int[]{2, 7, 11, 15}, 9);
         Assert.assertEquals("1,2", int2String(r1));
 
@@ -48,7 +48,7 @@ public class TowSumIITest {
     @Test
     public void testTowSumUseHashMap() throws Exception {
 
-        TowSumII towSum = new TowSumII();
+        TwoSumII towSum = new TwoSumII();
         int[] r1 = towSum.towSumUseHashMap(new int[]{2, 7, 11, 15}, 9);
         Assert.assertEquals("1,2", int2String(r1));
 

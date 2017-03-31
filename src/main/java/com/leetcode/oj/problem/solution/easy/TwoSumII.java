@@ -32,8 +32,8 @@ import java.util.concurrent.TimeUnit;
  * Created by leeyee.li on 2015/11/11.
  * Updated by leeyee on 2017/03/31.
  */
-public class TowSumII {
-    private static final Logger logger = LoggerFactory.getLogger(TowSumII.class);
+public class TwoSumII {
+    private static final Logger logger = LoggerFactory.getLogger(TwoSumII.class);
 
     public int[] twoSumUseLoop(int[] nums, int target) {
         Stopwatch stopwatch = Stopwatch.createStarted();
