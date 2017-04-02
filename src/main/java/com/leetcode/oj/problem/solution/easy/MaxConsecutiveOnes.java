@@ -19,7 +19,7 @@ package com.leetcode.oj.problem.solution.easy;
  */
 public class MaxConsecutiveOnes {
 
-    // 时间复杂度O(n),空间复杂度O(1)
+    // 时间复杂度O(n),空间复杂度O(n)
     public int findMaxConsecutiveOnes(int[] nums) {
 
         int consecutive = 0;
