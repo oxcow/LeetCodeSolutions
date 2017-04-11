@@ -1,5 +1,6 @@
 package com.leetcode.oj.problem.solution.medium;
 
+import com.leetcode.oj.problem.solution.common.ListNode;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -27,22 +28,22 @@ public class AddTowNumbersUseRecursiveTest {
 
     @Test
     public void testGetNodeList() throws Exception {
-        AddTowNumbersUseRecursive.ListNode listNode = construct(new Integer[]{1, 2, 3});
+         ListNode listNode = ListNode.creator(new Integer[]{1, 2, 3});
 
-        logger.info("{}", addTowNumbersUseRecursive.getNodeList(listNode, new ArrayList<Integer>()));
+        logger.info("{}", addTowNumbersUseRecursive.getNodeList(listNode, new ArrayList<>()));
     }
 
     @Test
     public void testConstructListNode() throws Exception {
-        AddTowNumbersUseRecursive.ListNode listNode = null;
+        ListNode listNode = null;
         for (Integer integer : Arrays.asList(new Integer[]{11, 2, 3})) {
             listNode = addTowNumbersUseRecursive.constructListNode(integer, listNode);
         }
         logger.info("{}", listNode);
     }
 
-    private AddTowNumbersUseRecursive.ListNode construct(Integer[] arr) {
-        AddTowNumbersUseRecursive.ListNode listNode = null;
+    private  ListNode construct(Integer[] arr) {
+        ListNode listNode = null;
         for (Integer integer : Arrays.asList(arr)) {
             listNode = addTowNumbersUseRecursive.constructListNode(integer, listNode);
         }
@@ -72,7 +73,8 @@ public class AddTowNumbersUseRecursiveTest {
         for (int i = 0; i < maxLen; i++) {
             integer[i] = i + 1;
         }
-        AddTowNumbersUseRecursive.ListNode bigListNode = construct(integer);
+
+        ListNode bigListNode = construct(integer);
         Assert.assertEquals("{2,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,4,6,8,0,3,5,7,9,1,222}", addTowNumbersUseRecursive.addTwoNumbers(bigListNode, bigListNode).toString());
     }
 }

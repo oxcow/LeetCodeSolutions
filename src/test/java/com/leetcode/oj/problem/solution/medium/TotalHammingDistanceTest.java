@@ -2,6 +2,7 @@ package com.leetcode.oj.problem.solution.medium;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import com.leetcode.oj.problem.solution.common.BigDataReader;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -15,24 +16,12 @@ import java.util.concurrent.TimeUnit;
 public class TotalHammingDistanceTest {
     private static final Logger logger = LoggerFactory.getLogger(TotalHammingDistanceTest.class);
 
+    BigDataReader.Sep sep = BigDataReader.Sep.comma;
 
-    private int[] getBigTestNum(File file) throws Exception {
-        logger.debug("start init big num array ...");
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(",");
-        List<Integer> numList = Lists.newArrayList();
-        while (scanner.hasNext()) {
-            numList.add(Integer.valueOf(scanner.next().trim()));
-        }
-        int[] bigNums = new int[numList.size()];
-        for (int i = 0; i < numList.size(); i++) {
-            bigNums[i] = numList.get(i);
-        }
-        logger.debug("end init big num array, size:{}", bigNums.length);
-        return bigNums;
-    }
+    String basePath = "/Users/leeyee/Documents/javaworkspace/LeetCodeSolutions/src/test/java/com/leetcode/oj/problem/solution/medium/";
 
-    //@Test
+
+    @Test
     public void testTotalHammingDistance() throws Exception {
         Stopwatch stopwatch = Stopwatch.createStarted();
         TotalHammingDistance thd = new TotalHammingDistance();
@@ -54,13 +43,14 @@ public class TotalHammingDistanceTest {
         Stopwatch stopwatch = Stopwatch.createStarted();
         TotalHammingDistance thd = new TotalHammingDistance();
 
-        int[] bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance.txt"));
+
+        int[] bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance.txt", sep);
         Assert.assertEquals(748425216, thd.totalHammingDistance(bigNum));
 
-        bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance1.txt"));
+        bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance1.txt", sep);
         Assert.assertEquals(748664583, thd.totalHammingDistance(bigNum));
 
-        bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance2.txt"));
+        bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance2.txt", sep);
         Assert.assertEquals(725000000, thd.totalHammingDistance(bigNum));
 
         logger.info("test big arrays spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
@@ -72,13 +62,14 @@ public class TotalHammingDistanceTest {
         Stopwatch stopwatch = Stopwatch.createStarted();
         TotalHammingDistance thd = new TotalHammingDistance();
 
-        int[] bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance.txt"));
+
+        int[] bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance.txt", sep);
         Assert.assertEquals(748425216, thd.totalHammingDistance2(bigNum));
 
-        bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance1.txt"));
+        bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance1.txt", sep);
         Assert.assertEquals(748664583, thd.totalHammingDistance2(bigNum));
 
-        bigNum = getBigTestNum(new File("E:\\workspace\\javaspace\\LeetCodeSolutions\\src\\test\\java\\com\\leetcode\\oj\\problem\\solution\\medium\\TotalHammingDistance2.txt"));
+        bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance2.txt", sep);
         Assert.assertEquals(725000000, thd.totalHammingDistance2(bigNum));
 
         logger.info("test totalHammingDistance2 spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));

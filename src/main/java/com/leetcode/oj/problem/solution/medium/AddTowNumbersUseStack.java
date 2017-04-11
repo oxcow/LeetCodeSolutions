@@ -1,6 +1,7 @@
 package com.leetcode.oj.problem.solution.medium;
 
 import com.google.common.base.Stopwatch;
+import com.leetcode.oj.problem.solution.common.ListNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,26 +28,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class AddTowNumbersUseStack {
     private static final Logger logger = LoggerFactory.getLogger(AddTowNumbersUseStack.class);
-
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            ListNode a = this;
-            String str = "{" + this.val + "";
-            while (a.next != null) {
-                a = a.next;
-                str += "," + a.val;
-            }
-            return str + "}";
-        }
-    }
 
     /**
      * 将ListNode的val保存到Stack中

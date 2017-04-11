@@ -1,9 +1,9 @@
 package com.leetcode.oj.problem.solution.easy;
 
+import com.leetcode.oj.problem.solution.common.ListNode;
+
 import java.util.ArrayDeque;
-import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 /**
  * URL: <a href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked List</a>
@@ -20,26 +20,6 @@ import java.util.Stack;
  * Created by leeyee on 16-3-5.
  */
 public class ReverseLinkedList {
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            ListNode a = this;
-            String str = "{" + this.val + "";
-            while (a.next != null) {
-                a = a.next;
-                str += "," + a.val;
-            }
-            return str + "}";
-        }
-    }
-
 
     public ListNode reverseList(ListNode head) {
         if (head == null) return head;
