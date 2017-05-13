@@ -17,7 +17,7 @@ public class ReverseWordsInAStringIII {
 
     public String reverseWords(String s) {
         int sIdx = 0; // need reverse string start index
-        int eIdx = 0; // nedd reverse string end index;
+        int eIdx = 0; // need reverse string end index;
         int iLen = s.length();
 
         if (iLen < 2) return s;
