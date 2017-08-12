@@ -1,5 +1,7 @@
 package com.leetcode.oj.problem.solution.easy;
 
+import java.util.Arrays;
+
 /**
  * URL: <a href="https://leetcode.com/problems/find-the-difference/description/">Find the Difference</a>
  * <p>
@@ -25,6 +27,16 @@ package com.leetcode.oj.problem.solution.easy;
  */
 public class FindTheDifference {
 
+
+    /**
+     * 循环原字符串，原字符串和目标字符串字符相同时，将目标字符串中相同的字符修改成特定字符
+     * <p>
+     * 找出修改后的目标字符串中不是指定字符的字符返回
+     *
+     * @param s
+     * @param t
+     * @return
+     */
     public char findTheDifference(String s, String t) {
 
         if (s.length() == 0 && t.length() == 1) return t.charAt(0);
@@ -35,8 +47,8 @@ public class FindTheDifference {
 
             int idx = t.indexOf(sChar);
 
-            if(idx > -1){
-                char [] tChars = t.toCharArray();
+            if (idx > -1) {
+                char[] tChars = t.toCharArray();
                 tChars[idx] = '\u0000';
                 t = new String(tChars);
             }
@@ -44,7 +56,7 @@ public class FindTheDifference {
         }
 
         for (char c : t.toCharArray()) {
-            if(c!= '\u0000'){
+            if (c != '\u0000') {
                 diffChar = c;
                 break;
             }
@@ -54,5 +66,32 @@ public class FindTheDifference {
 
     }
 
-    // TODO: optimization
+
+    /**
+     * 对目标字符串和原字符串进行排序。排序后比较相同位置字符，如果不同则目标字符串中的字符既是要查找的字符
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    public char findTheDifference1(String s, String t) {
+        if (s.length() == 0 && t.length() == 1) return t.charAt(0);
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+        Arrays.sort(sChars);
+        Arrays.sort(tChars);
+
+        char diff = tChars[tChars.length - 1];
+
+        for (int i = 0; i < sChars.length; i++) {
+            if (sChars[i] != tChars[i]) {
+                diff = tChars[i];
+                break;
+            }
+        }
+
+        return diff;
+
+    }
+
 }
