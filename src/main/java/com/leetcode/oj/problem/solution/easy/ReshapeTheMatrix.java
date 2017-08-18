@@ -51,19 +51,13 @@ public class ReshapeTheMatrix {
 
         if (r * c != row * col) return nums;
 
-        int[] arrays = new int[r * c];
-        int idx = 0;
+        int[][] reshape = new int[r][c];
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                arrays[idx++] = nums[i][j];
+                int offset = i * col + j;
+                reshape[offset / c][offset % c] = nums[i][j];
             }
-        }
-
-        int[][] reshape = new int[r][c];
-
-        for (int i = 0; i < idx; i++) {
-            reshape[i / c][i % c] = arrays[i];
         }
 
         return reshape;
