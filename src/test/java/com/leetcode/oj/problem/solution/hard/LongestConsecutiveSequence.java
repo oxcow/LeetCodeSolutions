@@ -1,6 +1,7 @@
 package com.leetcode.oj.problem.solution.hard;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,10 +53,8 @@ public class LongestConsecutiveSequence {
                 // sum: length of the sequence n is in
                 int sum = left + right + 1;
                 map.put(n, sum);
-
                 // keep track of the max length
                 res = Math.max(res, sum);
-
                 // extend the length to the boundary(s)
                 // of the sequence
                 // will do nothing if n has no neighbors
@@ -67,5 +66,63 @@ public class LongestConsecutiveSequence {
             }
         }
         return res;
+    }
+
+    /**
+     * 利用数组下标改造使用Map的longestConsecutiveNotSort方法。
+     * 理论上要比使用Map快，不过如果数组中存在太大的数，那么内存空间将不够用。
+     * 因此这种方法算是一种“残废算法”。
+     */
+    public int restrictedMethod(int... nums) {
+        if (nums == null) return 0;
+
+        int max = nums[0]; // WARNING: Too big will throws exception
+        for (int i = 1; i < nums.length; i++) {
+            max = Math.max(max, nums[i]);
+        }
+
+        int longest = 0;
+        int[] positive = new int[max + 2]; // gt 0
+        int[] negative = new int[max + 2]; // le 0
+
+        for (int n : nums) {
+            // double check
+            if (n < 0 && negative[-n] != 0
+                    || n > 0 && positive[n] != 0) {
+                continue;
+            }
+
+            int pre, next;
+            if (n < 0) {
+                pre = negative[-(n - 1)];
+                next = n + 1 < 0 ? negative[-(n + 1)] : positive[-(n + 1)];
+            } else {
+                pre = n - 1 > 0 ? positive[n - 1] : negative[-(n - 1)];
+                next = positive[n + 1];
+            }
+
+            int sum = pre + next + 1;
+
+            if (n < 0) {
+                negative[-n] = sum;
+                negative[-(n - pre)] = sum;
+                if (n + next < 0) {
+                    negative[-(n + next)] = sum;
+                } else {
+                    positive[n + next] = sum;
+                }
+            } else {
+                positive[n] = sum;
+                positive[n + next] = sum;
+                if (n - pre < 0) {
+                    negative[-(n - pre)] = sum;
+                } else {
+                    positive[n - pre] = sum;
+                }
+            }
+
+            longest = Math.max(longest, sum);
+        }
+        return longest;
     }
 }
