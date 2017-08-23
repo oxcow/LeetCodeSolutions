@@ -12,21 +12,19 @@ public class MinimumMovesToEqualArrayElements {
                 maxIdx = i;
             }
         }
-        Integer secMax = null;
+        // TODO: 不需要对数组元素作出改变就可算出最小移动次数。最大元素与其他元素的差组成新的数组，然后继续计算与最大值的差，最大值和就是最小移动次数
+        int maxInc = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (i != maxIdx && nums[i] != max) {
-                if (secMax == null || nums[i] > secMax) {
-                    secMax = nums[i];
-                }
+            if (i != maxIdx) {
+                maxInc = Math.max(max - nums[i],maxInc);
             }
         }
 
-        int minMove = secMax == null ? 0 : max - secMax;
-        System.out.println(String.format("Max: %d, secMax: %d, move: %d", max, secMax, minMove));
-        if (minMove != 0) {
+        System.out.println(String.format("Max: %d, maxInc: %d", max, maxInc));
+        if (maxInc != 0) {
             for (int i = 0; i < nums.length; i++) {
                 if (i != maxIdx) {
-                    nums[i] += minMove;
+                    nums[i] += maxInc;
                 }
             }
         }
@@ -35,7 +33,7 @@ public class MinimumMovesToEqualArrayElements {
             System.out.print(i + ",");
         });
         System.out.print("]\n");
-        return minMove;
+        return maxInc;
     }
 
     public int minMoves(int[] nums) {
@@ -43,7 +41,9 @@ public class MinimumMovesToEqualArrayElements {
         if (nums.length == 2) return Math.abs(nums[0] - nums[1]);
 
         int minMove = 0;
+        int loop =0;
         while (true) {
+            loop++;
             int move = move(nums);
             if (move == 0) {
                 break;
@@ -51,6 +51,7 @@ public class MinimumMovesToEqualArrayElements {
                 minMove += move;
             }
         }
+        System.out.println("final loop: "+loop);
         return minMove;
     }
 }
