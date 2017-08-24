@@ -1,6 +1,8 @@
 package com.leetcode.oj.problem.solution.easy;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * URL: <a href="https://leetcode.com/problems/next-greater-element-i/">Next Greater Element I</a>
@@ -31,36 +33,29 @@ import java.util.Arrays;
 public class NextGreaterElementI {
     public int[] nextGreaterElement(int[] findNums, int[] nums) {
         int[] result = new int[findNums.length];
+
+        Map<Integer, Integer> numsMap = new HashMap<>();
+        for (int i = 0; i < nums.length - 1; i++) {
+            numsMap.put(nums[i], i);
+        }
+
         for (int i = 0; i < findNums.length; i++) {
             int findNum = findNums[i];
-
             // 在目标数组nums中找到匹配的元素所在的位置
-            // todo: 可优化查询算法提升查询速度，目前使用方式效率最低
-            int matchIdx = -1;
-            for (int j = 0; j < nums.length; j++) {
-                int num = nums[j];
-                if (findNum == num) {
-                    matchIdx = j;
-                    break;
-                }
-            }
-
+            int matchIdx = numsMap.getOrDefault(findNum, -1);
             if (matchIdx == -1) { // 根据题目的假设来讲，匹配不到的情况应该不会出现！
                 result[i] = -1;
                 break;
             }
-
             // 在目标数组nums中，从matchIdx+1开始查找比匹配元素第一大的数
-            int greater = -1;
+            int nextGreater = -1;
             for (int j = matchIdx + 1; j < nums.length; j++) {
                 if (findNum < nums[j]) {
-                    greater = nums[j];
+                    nextGreater = nums[j];
                     break;
                 }
             }
-
-            result[i] = greater;
-
+            result[i] = nextGreater;
         }
         return result;
     }
