@@ -27,6 +27,7 @@ public class DistributeCandiesTest {
 
     @Test
     public void distributeCandies() throws Exception {
+        Assert.assertEquals(1, dis.distributeCandies(new int[]{1, 1, 1, 1}));
         Assert.assertEquals(2, dis.distributeCandies(new int[]{1, 1, 2, 3}));
         Assert.assertEquals(3, dis.distributeCandies(new int[]{1, 1, 2, 2, 3, 3}));
     }
@@ -34,5 +35,18 @@ public class DistributeCandiesTest {
     @Test
     public void distributeCandiesBig() throws Exception {
         Assert.assertEquals(4500, dis.distributeCandies(bigCandies));
+    }
+
+    @Test
+    public void distributeCandiesByReduceSpace() throws Exception {
+        Assert.assertEquals(1, dis.distributeCandiesByReduceSpace(new int[]{1, 11}));
+        Assert.assertEquals(2, dis.distributeCandiesByReduceSpace(new int[]{1, 1, 2, 3}));
+        Assert.assertEquals(3, dis.distributeCandiesByReduceSpace(new int[]{1, 1, 2, 2, 3, 3}));
+        Assert.assertEquals(2, dis.distributeCandiesByReduceSpace(new int[]{1, 1, 1, 3, 3, 3}));
+    }
+
+    @Test
+    public void distributeCandiesByReduceSpaceBig() throws Exception {
+        Assert.assertEquals(4500, dis.distributeCandiesByReduceSpace(bigCandies));
     }
 }
