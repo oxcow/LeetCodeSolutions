@@ -37,21 +37,17 @@ public class StudentAttendanceRecordI {
         char[] chars = s.toCharArray();
         boolean reward = true;
         int absent = 0;
-        String present = "";
+        int present = 0;
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] != 'L') present = "";
+            if (chars[i] != 'L') present = 0;
             if (chars[i] == 'A' && ++absent > 1) {
                 reward = false;
                 break;
             }
-            if (chars[i] == 'L') {
-                present += 'L';
-                if (present.length() > 2) {
-                    reward = false;
-                    break;
-                }
+            if (chars[i] == 'L' && ++present > 2) {
+                reward = false;
+                break;
             }
-
         }
         return reward;
     }
