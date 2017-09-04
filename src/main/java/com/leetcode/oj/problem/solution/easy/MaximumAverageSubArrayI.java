@@ -20,7 +20,7 @@ public class MaximumAverageSubArrayI {
     public double findMaxAverage(int[] nums, int k) {
 
         if (nums == null || nums.length < k || k < 1) {
-            throw new RuntimeException("1 <= k <= n <= 30,000.");
+            throw new RuntimeException("nums is not null and 1 <= k <= nums.length <= 30000");
         }
 
         double preSumCache = 0;

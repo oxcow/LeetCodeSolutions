@@ -6,6 +6,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
 /**
  * Created by wli on 2017-09-04.
  */
@@ -27,6 +31,21 @@ public class MaximumAverageSubArrayITest {
     @After
     public void tearDown() throws Exception {
         maxAvgSub = null;
+    }
+
+    @Test
+    public void testExceptionByTry() {
+        try {
+            maxAvgSub.findMaxAverage(new int[]{-1}, 2);
+            fail("RuntimeException to be thrown");
+        } catch (RuntimeException re) {
+            assertThat(re.getMessage(), is("nums is not null and 1 <= k <= nums.length <= 30000"));
+        }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testException() {
+        maxAvgSub.findMaxAverage(new int[]{-1}, -1);
     }
 
     @Test
