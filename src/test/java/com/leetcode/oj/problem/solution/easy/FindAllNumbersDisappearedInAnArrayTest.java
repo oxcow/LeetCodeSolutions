@@ -22,7 +22,7 @@ public class FindAllNumbersDisappearedInAnArrayTest {
 
     @Before
     public void init() throws Exception {
-        String filePath = "/Users/leeyee/Documents/javaworkspace/LeetCodeSolutions/src/test/java/com/leetcode/oj/problem/solution/easy/big_int.txt";
+        String filePath = "/Users/leeyee/Documents/javaworkspace/LeetCodeSolutions/src/test/java/com/leetcode/oj/problem/solution/easy/FindAllNumbersDisappearedInAnArray.txt";
         bigInt = BigDataReader.readInt(filePath, BigDataReader.Sep.comma);
     }
 
