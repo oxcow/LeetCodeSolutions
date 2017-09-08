@@ -26,4 +26,8 @@ public final class StringHelper {
         return sb.toString();
     }
 
+    public static final String toString(int... objs) {
+        if (objs == null || objs.length == 0) return "[]";
+        return "[" + JOINER_COMMA.join(IntStream.of(objs).boxed().toArray()) + "]";
+    }
 }

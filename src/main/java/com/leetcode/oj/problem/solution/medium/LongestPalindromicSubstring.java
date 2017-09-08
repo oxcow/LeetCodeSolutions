@@ -95,4 +95,63 @@ public class LongestPalindromicSubstring {
         System.out.println("P2 count string size: " + s.length() + " spend: " + stopwatch.stop().elapsed(TimeUnit.MILLISECONDS) + "ms");
         return longestPal;
     }
+
+    public String longestPalindrome3(String s) {
+        if (s == null) return s;
+        boolean isPal = true;
+        for (int p = 0, n = s.length() - 1; p < s.length() / 2; p++) {
+            if (s.charAt(p) != s.charAt(n)) {
+                isPal = false;
+                break;
+            } else {
+                --n;
+            }
+        }
+        if (isPal) return s;
+
+        Set<String> palindromicStrings = new HashSet<>();
+        List<Integer> mids = new ArrayList<>();
+
+        int preStep = 1, nextStep = 1;
+
+        for (int mid = 1; mid < s.length() - 1; mid++) {
+            mids.add(mid);
+            int pre = mid - preStep;
+            int next = mid + nextStep;
+            if (pre < 0 || next > s.length() - 1) {
+                preStep = 1;
+                nextStep = 1;
+                continue;
+            }
+            if (s.charAt(pre) == s.charAt(next)) {
+                palindromicStrings.add(s.substring(pre, next + 1));
+                if (s.charAt(pre) != s.charAt(mid)) {
+                    ++preStep;
+                }
+                --mid;
+                ++nextStep;
+                continue;
+            }
+            if (s.charAt(mid) == s.charAt(next)) {
+                palindromicStrings.add(s.substring(mid, next + 1));
+                nextStep = 1;
+                preStep = 1;
+                continue;
+            }
+            if (s.charAt(pre) == s.charAt(mid)) { // from begin to end scan, so we only need pre step ones.
+                palindromicStrings.add(s.substring(pre, mid + 1));
+            }
+            preStep = 1;
+            nextStep = 1;
+        }
+
+        String longestPal = s.substring(0, 1);
+        for (String palindromicString : palindromicStrings) {
+            if (palindromicString.length() > longestPal.length()) {
+                longestPal = palindromicString;
+            }
+        }
+        return longestPal;
+    }
+
 }

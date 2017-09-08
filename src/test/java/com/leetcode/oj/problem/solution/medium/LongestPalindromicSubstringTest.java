@@ -59,4 +59,31 @@ public class LongestPalindromicSubstringTest {
         Assert.assertEquals(caseStr2_r, lps.longestPalindrome2(caseStr2));
         Assert.assertEquals("yvvy", lps.longestPalindrome2(caseStr3));
     }
+
+    @Test
+    public void testLongestPalindrome3() throws Exception {
+        LongestPalindromicSubstring lps = new LongestPalindromicSubstring();
+
+        Assert.assertEquals("anana", lps.longestPalindrome3("bananas"));
+        Assert.assertEquals("abbaabba", lps.longestPalindrome3("abbaabba"));
+
+        Assert.assertNull(lps.longestPalindrome3(null));
+        Assert.assertEquals("bb", lps.longestPalindrome3("abb"));
+        Assert.assertEquals("aba", lps.longestPalindrome3("caba"));
+        Assert.assertEquals("aba", lps.longestPalindrome3("babad")); // return bab also is right
+        Assert.assertEquals("bacdcab", lps.longestPalindrome3("bacdcab"));
+        Assert.assertEquals("aaaaaa", lps.longestPalindrome3("aaaaaa"));
+        Assert.assertEquals("aa", lps.longestPalindrome3("aa"));
+        Assert.assertEquals("cc", lps.longestPalindrome3("ccd"));
+        Assert.assertEquals("a", lps.longestPalindrome3("abcda"));
+        Assert.assertEquals("cccc", lps.longestPalindrome3("bccccd"));
+        Assert.assertEquals("ccc", lps.longestPalindrome3("ccc"));
+        Assert.assertEquals("", lps.longestPalindrome3(""));
+        Assert.assertEquals("a", lps.longestPalindrome3("a"));
+        Assert.assertEquals("bb", lps.longestPalindrome3("cbbd"));
+        Assert.assertEquals("ranynar", lps.longestPalindrome3(caseStr));
+        Assert.assertEquals(caseStr1, lps.longestPalindrome3(caseStr1));
+        Assert.assertEquals("yvvy", lps.longestPalindrome2(caseStr3));
+        Assert.assertEquals(caseStr2_r, lps.longestPalindrome3(caseStr2));
+    }
 }
