@@ -39,6 +39,19 @@ public final class BigDataReader {
         return "";
     }
 
+    public static final List<String> readAllLines(String filePath) {
+        List<String> allLines = Lists.newArrayList();
+        try {
+            Scanner scanner = new Scanner(new File(filePath));
+            while (scanner.hasNext()) {
+                allLines.add(scanner.nextLine());
+            }
+        } catch (Exception e) {
+
+        }
+        return allLines;
+    }
+
     public static final List<String> readString(String filePath, Sep sep) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         String[] bigStrings = null;
