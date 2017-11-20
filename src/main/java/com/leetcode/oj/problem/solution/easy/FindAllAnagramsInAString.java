@@ -2,6 +2,7 @@ package com.leetcode.oj.problem.solution.easy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 
 /**
@@ -48,14 +49,14 @@ public class FindAllAnagramsInAString {
         int sLen = s.length(), pLen = p.length();
 
         if (pLen > sLen) return indexList;
-        if (pLen == sLen && isSimilar(s, p)) {
+        if (pLen == sLen && isSimilar1(s, p)) {
             indexList.add(0);
             return indexList;
         }
 
         for (int i = 0; i <= sLen - p.length(); i++) {
             String sub = s.substring(i, i + p.length());
-            if (isSimilar(sub, p)) {
+            if (isSimilar1(sub, p)) {
                 indexList.add(i);
             }
         }
@@ -65,10 +66,38 @@ public class FindAllAnagramsInAString {
 
     private boolean isSimilar(String str1, String str2) {
         if (str1.length() != str2.length()) return false;
+        if (str1.equals(str2)) return true;
         char[] chr1 = str1.toCharArray();
         char[] chr2 = str2.toCharArray();
         Arrays.sort(chr1);
         Arrays.sort(chr2);
         return String.valueOf(chr1).equals(String.valueOf(chr2));
+    }
+
+    public boolean isSimilar1(String str1, String str2) {
+        if (str1.length() != str2.length()) return false;
+        if (str1.equals(str2)) return true;
+
+        BitSet bitSet = new BitSet();
+        for (int i = 0; i < str1.length(); i++) {
+            char c = str1.charAt(i);
+            if (bitSet.get(c)) {
+                bitSet.set(c, false);
+            } else {
+                bitSet.set(c);
+            }
+        }
+        if (bitSet.isEmpty()) {
+            bitSet.set(str1.charAt(0));
+        }
+        for (int i = 0; i < str2.length(); i++) {
+            char c = str2.charAt(i);
+            if (bitSet.get(c)) {
+                bitSet.set(c, false);
+            } else {
+                bitSet.set(c);
+            }
+        }
+        return bitSet.isEmpty();
     }
 }
