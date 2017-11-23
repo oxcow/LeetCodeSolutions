@@ -25,23 +25,60 @@ import java.util.Map;
  * Created by wli on 2017-11-22.
  */
 public class IsomorphicStrings {
+    /**
+     * get the first index of each character in the string. if s.char.index ne t.char.index return false
+     *
+     * @param s
+     * @param t
+     * @return
+     */
     public boolean isIsomorphic(String s, String t) {
         if (s == null || t == null || s.length() != t.length()) return false;
         if (s.length() == t.length() && s.length() == 1) return true;
 
-        String sMode = "", tMode = "";
-        Map<Character, Integer> offsetMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
-            offsetMap.putIfAbsent(s.charAt(i), i);
-            sMode += offsetMap.get(s.charAt(i));
+            char sChar = s.charAt(i), tChar = t.charAt(i);
+            if (s.indexOf(sChar) != t.indexOf(tChar)) {
+                return false;
+            }
         }
-        System.out.println(sMode);
-        offsetMap.clear();
-        for (int i = 0; i < t.length(); i++) {
-            offsetMap.putIfAbsent(t.charAt(i), i);
-            tMode += offsetMap.get(t.charAt(i));;
+        return true;
+    }
+
+    /**
+     * s can be transfer to t through the mapping.
+     * 1. compare char in the same position
+     * 2. get map char by s.char, if map char is not null and map char is not eq t.char then return false;
+     * 3. if map char is null, get map char by t.char, if map char is not null and map char is eq t.char then return false, else if map is contains value t.char then return false
+     * 4. else, save map s.char to t.char
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    public boolean isIsomorphicByMap(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) return false;
+        if (s.length() == t.length() && s.length() == 1) return true;
+
+        Map<Character, Character> map = new HashMap<>();
+        int iLen = s.length();
+        for (int i = 0; i < iLen; i++) {
+            char sChar = s.charAt(i), tChar = t.charAt(i);
+            Character sMapChar = map.get(s.charAt(i));
+            if (sMapChar != null && sMapChar != tChar) {
+                return false;
+            }
+            if (sMapChar == null) {
+                Character tMapChar = map.get(t.charAt(i));
+                if (tMapChar != null && tMapChar == tChar) { // a->a, b->a (ab,aa)
+                    return false;
+                }
+                if (map.containsValue(tChar)) { // a->b, b->c, b->d (bar,foo)
+                    return false;
+                }
+            }
+            map.put(sChar, tChar);
         }
-        System.out.println(tMode);
-        return sMode.equals(tMode);
+        return true;
     }
 }
