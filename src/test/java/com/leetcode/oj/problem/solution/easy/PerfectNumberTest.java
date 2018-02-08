@@ -12,23 +12,17 @@ import java.util.Arrays;
  * Created by wli on 2018-02-08.
  */
 public class PerfectNumberTest {
-    int[] perfectNums = new int[]{1, 6, 28, 496, 8128};
+    int[] perfectNums = new int[]{6, 28, 496, 8128};
 
     @Rule
     public final ExpectedException expectedException = ExpectedException.none();
-
-    @Test(expected = IllegalArgumentException.class)
-    public void illegalArgumentException() {
-        PerfectNumber pn = new PerfectNumber();
-        pn.checkPerfectNumber(100_000_001);
-    }
 
     @Test
     public void illegalArgumentException1() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("The input number n will not exceed 100,000,000");
         PerfectNumber pn = new PerfectNumber();
-        pn.checkPerfectNumber(0);
+        pn.checkPerfectNumber(100_000_001);
     }
 
     @Test
@@ -37,6 +31,10 @@ public class PerfectNumberTest {
         Arrays.stream(perfectNums).forEach(num -> {
             Assert.assertTrue(pn.checkPerfectNumber(num));
         });
+        Arrays.stream(perfectNums).forEach(num -> {
+            Assert.assertFalse(pn.checkPerfectNumber(-num));
+        });
+        Assert.assertFalse(pn.checkPerfectNumber(1));
         for (int i = 30; i < 50; i++) {
             Assert.assertFalse(pn.checkPerfectNumber(i));
         }
@@ -51,6 +49,6 @@ public class PerfectNumberTest {
         Arrays.stream(perfectNums).forEach(num -> {
             System.out.println(num + " = " + JOINER_PLUS.join(pn.getAllPositiveDivisorExceptSelf(num)));
         });
-        System.out.println(pn.getAllPositiveDivisorExceptSelf(99999993));
+        System.out.println(pn.getAllPositiveDivisorExceptSelf1(99999993));
     }
 }
