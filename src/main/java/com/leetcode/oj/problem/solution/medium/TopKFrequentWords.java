@@ -34,30 +34,33 @@ import java.util.stream.Collectors;
 public class TopKFrequentWords {
 
     // TODO: 太慢需要优化
+    // 最普通的处理方式
     public List<String> topKFrequent(String[] words, int k) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         Map<String, Integer> map = new HashMap<>();
 
+        // 统计每个字符串出现的次数
         for (String word : words) {
             int num = map.getOrDefault(word, 0);
             map.put(word, ++num);
         }
 
+        // 排序出现次数
         Set<Integer> nums = map.values().stream().collect(Collectors.toSet());
 
         List<String> result = new ArrayList<>();
         nums.stream()
-                .sorted(Comparator.reverseOrder())
-                .distinct()
-                .limit(k)
-                .forEach(num -> {
+                .distinct() // 去重次数相同的
+                .sorted(Comparator.reverseOrder()) // 从出现次数最多的开始
+                .limit(k) // 做多获取 top k 个
+                .forEach(num -> { // 获取次数最多的字符集合
                     List<String> innerList = new ArrayList<>();
                     for (Map.Entry<String, Integer> entry : map.entrySet()) {
                         if (entry.getValue() == num) {
                             innerList.add(entry.getKey());
                         }
                     }
-                    Collections.sort(innerList);
+                    Collections.sort(innerList); // 顺序排列
                     innerList = innerList.size() >= k ? innerList.subList(0, k) : innerList;
                     result.addAll(innerList);
                 });
