@@ -25,8 +25,11 @@ package com.leetcode.oj.problem.solution.medium;
  * Note:
  * <p>
  * Your solution should be in logarithmic complexity.
+ *
+ * @see com.leetcode.oj.problem.solution.easy.PeakIndexInAMountainArray
  */
 public class FindPeakElement {
+    // 如果数组元素是从小到达排列，则该算法具有最坏算法复杂度O(n)
     public int findPeakElement(int[] nums) {
         int len = nums.length;
         int maxIdx = 0;
@@ -36,7 +39,7 @@ public class FindPeakElement {
                 max = nums[i];
                 maxIdx = i;
             } else {
-                return maxIdx;
+                break;
             }
         }
         return maxIdx;
