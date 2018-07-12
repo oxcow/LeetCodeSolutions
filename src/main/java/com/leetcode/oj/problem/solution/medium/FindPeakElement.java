@@ -29,7 +29,7 @@ package com.leetcode.oj.problem.solution.medium;
  * @see com.leetcode.oj.problem.solution.easy.PeakIndexInAMountainArray
  */
 public class FindPeakElement {
-    // 如果数组元素是从小到达排列，则该算法具有最坏算法复杂度O(n)
+    // 如果数组元素是从小到大排列，则该算法具有最坏算法复杂度O(n)
     public int findPeakElement(int[] nums) {
         int len = nums.length;
         int maxIdx = 0;
