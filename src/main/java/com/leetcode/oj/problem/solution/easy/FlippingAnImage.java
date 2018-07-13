@@ -32,7 +32,6 @@ public class FlippingAnImage {
     public int[][] flipAndInvertImage(int[][] A) {
         int n = A.length;
         int m = A[0].length;
-        int result[][] = new int[n][m];
 
         for (int i = 0; i < n; i++) {
             int[] row = A[i];
