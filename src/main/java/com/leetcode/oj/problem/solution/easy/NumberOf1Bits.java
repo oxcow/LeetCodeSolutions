@@ -1,7 +1,5 @@
 package com.leetcode.oj.problem.solution.easy;
 
-import java.math.BigInteger;
-
 /**
  * URL: <a href="https://leetcode.com/problems/number-of-1-bits/">Number of 1 Bits</a>
  * <p>
