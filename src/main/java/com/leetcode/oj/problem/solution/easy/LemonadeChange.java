@@ -1,8 +1,5 @@
 package com.leetcode.oj.problem.solution.easy;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * URL: <a href="https://leetcode.com/problems/lemonade-change/description/">Lemonade Change</a>
  * <p>
@@ -52,46 +49,35 @@ import java.util.Map;
  * bills[i] will be either 5, 10, or 20.
  */
 public class LemonadeChange {
+
     public boolean lemonadeChange(int[] bills) {
 
-        Map<Integer, Integer> billCountMap = new HashMap<>(3);
+        int bill5 = 0, bill10 = 0;
 
         for (int bill : bills) {
 
-            if (bill == 5) {
-                billCountMap.put(5, billCountMap.getOrDefault(5, 0) + 1);
-                continue;
+            switch (bill) {
+                case 5:
+                    ++bill5;
+                    break;
+                case 10:
+                    if (bill5 == 0) return false;
+                    if (bill5 > 0) {
+                        --bill5;
+                        ++bill10;
+                    }
+                    break;
+                case 20:
+                    if (bill5 > 0 && bill10 > 0) {
+                        --bill5;
+                        --bill10;
+                    } else if (bill5 > 3) {
+                        bill5 -= 3;
+                    } else {
+                        return false;
+                    }
+                    break;
             }
-
-            if (bill == 10) {
-                int bill5Count = billCountMap.getOrDefault(5, 0);
-                if (bill5Count < 1) {
-                    return false;
-                } else {
-                    billCountMap.put(5, --bill5Count);
-                    billCountMap.put(10, billCountMap.getOrDefault(10, 0) + 1);
-                }
-
-                continue;
-            }
-
-            if (bill == 20) {
-
-                int bill5Count = billCountMap.getOrDefault(5, 0);
-                int bill10Count = billCountMap.getOrDefault(10, 0);
-
-                if (bill10Count > 0 && bill5Count > 0) {
-                    billCountMap.put(5, --bill5Count);
-                    billCountMap.put(10, --bill10Count);
-                    billCountMap.put(20, billCountMap.getOrDefault(20, 0) + 1);
-                } else if (bill5Count > 3) {
-                    billCountMap.put(5, bill5Count - 3);
-                    billCountMap.put(20, billCountMap.getOrDefault(20, 0) + 1);
-                } else {
-                    return false;
-                }
-            }
-
         }
 
         return true;
