@@ -28,27 +28,19 @@ import java.util.Map;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
 
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, List<String>> groupMap = new HashMap<>();
 
-        for (String str : strs) {
+        Arrays.stream(strs).forEach(str -> {
+
             char[] chars = str.toCharArray();
             Arrays.sort(chars);
             String sortStr = String.valueOf(chars);
 
-            List<String> group = map.getOrDefault(sortStr, new ArrayList<>());
-
+            List<String> group = groupMap.getOrDefault(sortStr, new ArrayList<>());
             group.add(str);
+            groupMap.put(sortStr, group);
+        });
 
-            map.put(sortStr, group);
-
-        }
-
-        List<List<String>> groups = new ArrayList<>();
-
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            groups.add(entry.getValue());
-        }
-
-        return groups;
+        return new ArrayList<>(groupMap.values());
     }
 }
