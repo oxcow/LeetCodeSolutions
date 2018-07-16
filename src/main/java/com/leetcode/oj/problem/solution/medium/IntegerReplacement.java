@@ -1,5 +1,8 @@
 package com.leetcode.oj.problem.solution.medium;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * URL: <a href="https://leetcode.com/problems/integer-replacement/description/">Integer Replacement</a>
  * <p>
@@ -34,48 +37,49 @@ package com.leetcode.oj.problem.solution.medium;
  */
 public class IntegerReplacement {
 
+    private static final Logger logger = LoggerFactory.getLogger(IntegerReplacement.class);
+
     public int integerReplacement(int nm) {
-        int step = 0;
+        int step = 0, loop4Log = 0;
         Long n = Long.valueOf(nm);
+        StringBuilder logSb = new StringBuilder("" + nm);
+
         while (n != 1) {
+            loop4Log++;
+
+            // 处理偶数
             if (n % 2 == 0) {
                 step++;
-                n = n / 2;
-                //System.out.println("step: " + step + " n is " + n);
+                n = n >> 1;
+                logSb.append(" -> ").append(n);
                 continue;
             }
 
-            long plusOne = n + 1;
-            long reduceOne = n - 1;
+            // 处理奇数
 
-            long plusOneHalf = plusOne / 2;
-            long reduceOneHalf = reduceOne / 2;
-
-            if (plusOneHalf == 1 || reduceOneHalf == 1) {
-                step++;
-                //System.out.println("step: " + step + " n-1 is " + reduceOne);
-                step++;
-                //System.out.println("step: " + step + " n is " + reduceOneHalf);
+            long reduceOne2Even = n - 1;
+            if (reduceOne2Even == 2) {
+                step += 2;
+                logSb.append(" -> ").append(reduceOne2Even).append(" -> ").append(1);
                 break;
             }
 
-            if (plusOneHalf % 2 == 0 && 0 == reduceOneHalf % 2
-                    || reduceOneHalf % 2 == 0) {
-                step++;
-                //System.out.println("step: " + step + " n-1 is " + reduceOne);
-                step++;
-                //System.out.println("step: " + step + " n is " + reduceOneHalf);
-                n = reduceOneHalf;
+            long plusOne2Even = n + 1;
+            long halfPlusOne2Even = plusOne2Even >> 1;
+            long halfReduceOne2Even = reduceOne2Even >> 1;
+
+            if (halfReduceOne2Even % 2 == 0) {
+                step += 2;
+                logSb.append(" -> ").append(reduceOne2Even).append(" -> ").append(halfReduceOne2Even);
+                n = halfReduceOne2Even;
                 continue;
             }
 
-
-            step++;
-            //System.out.println("step: " + step + " n+1 is " + plusOne);
-            step++;
-            //System.out.println("step: " + step + " n is " + plusOneHalf);
-            n = plusOneHalf;
+            step += 2;
+            logSb.append(" -> ").append(plusOne2Even).append(" -> ").append(halfPlusOne2Even);
+            n = halfPlusOne2Even;
         }
+        logger.debug("{} loops, {} Steps. {}", loop4Log, step, logSb.toString());
         return step;
     }
 }
