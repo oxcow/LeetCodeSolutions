@@ -3,6 +3,7 @@ package com.leetcode.oj.problem.solution.easy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,25 +46,21 @@ public class MostCommonWord {
 
         Map<String, Integer> wordCountMap = new HashMap<>();
 
-        String subString = "";
+        String word = "";
 
-        for (char c : paragraph.toCharArray()) {
+        for (char c : (paragraph + " ").toCharArray()) {
             if (Character.isLetter(c)) {
-                subString += c;
-            } else if (subString != "") {
-                wordCountMap.put(subString.toLowerCase(), wordCountMap.getOrDefault(subString.toLowerCase(), 0) + 1);
-                subString = "";
+                word += c;
+            } else if (word != "") {
+                wordCountMap.put(word.toLowerCase(), wordCountMap.getOrDefault(word.toLowerCase(), 0) + 1);
+                word = "";
             }
         }
 
-        if (subString != "") {
-            wordCountMap.put(subString.toLowerCase(), wordCountMap.getOrDefault(subString.toLowerCase(), 0) + 1);
-        }
-
         LOGGER.debug("Word frequency statistics: {}", wordCountMap);
-        for (String ban : banned) {
-            wordCountMap.remove(ban);
-        }
+
+        Arrays.stream(banned).forEach(wordCountMap::remove);
+
         LOGGER.debug("Remove baned words: {}", wordCountMap);
 
         String mostWord = null;
@@ -74,6 +71,9 @@ public class MostCommonWord {
                 mostWord = entry.getKey();
             }
         }
+
+        LOGGER.debug("Most common word is [{}] and occurs {} times.", mostWord, mostWordCount);
+
         return mostWord;
     }
 }
