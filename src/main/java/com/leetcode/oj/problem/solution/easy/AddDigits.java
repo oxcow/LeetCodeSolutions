@@ -48,7 +48,7 @@ public class AddDigits {
                 sum = 0;
             }
         }
-        logger.info("Spend: {} nano. addDigits({}) -> {}", stopwatch.stop().elapsed(TimeUnit.NANOSECONDS), logA, sum);
+        logger.debug("Spend: {} nano. addDigits({}) -> {}", stopwatch.stop().elapsed(TimeUnit.NANOSECONDS), logA, sum);
         return sum;
     }
 
@@ -61,7 +61,7 @@ public class AddDigits {
             int mod = num % 9;
             r = mod != 0 ? mod : num == 0 ? 0 : 9;
         }
-        logger.info("Spend: {} nano. addDigits({}) -> {}", stopwatch.stop().elapsed(TimeUnit.NANOSECONDS), num, r);
+        logger.debug("Spend: {} nano. addDigits({}) -> {}", stopwatch.stop().elapsed(TimeUnit.NANOSECONDS), num, r);
         return r;
     }
 }

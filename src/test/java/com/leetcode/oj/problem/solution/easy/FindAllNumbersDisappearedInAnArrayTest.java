@@ -44,7 +44,7 @@ public class FindAllNumbersDisappearedInAnArrayTest {
 
         List<Integer> disappeared = find.findDisappearedNumbers(bigInt);
 
-        logger.info("big num handle spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("big num handle spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
 
         Assert.assertEquals(15843, disappeared.size());
     }

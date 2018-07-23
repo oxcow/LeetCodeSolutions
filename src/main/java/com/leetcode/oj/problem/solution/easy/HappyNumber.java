@@ -45,7 +45,7 @@ public class HappyNumber {
                 break;
             }
         }
-        logger.info("{} is happy number? {}. [{}]", print, isHappy, sb.delete(sb.length() - 1, sb.length()).toString());
+        logger.debug("{} is happy number? {}. [{}]", print, isHappy, sb.delete(sb.length() - 1, sb.length()).toString());
         return isHappy;
     }
 }

@@ -74,7 +74,7 @@ public class MaximumLengthOfPairChain {
                 refer = pair;
             }
         }
-        logger.info("Count: {}", count);
+         logger.debug("Count: {}", count);
         return count;
     }
 
@@ -83,7 +83,7 @@ public class MaximumLengthOfPairChain {
         pairList.stream().forEach((int a[]) -> {
             sb.append(String.format("[%d,%d]", a[0], a[1]));
         });
-        logger.info("{}", sb.toString());
+         logger.debug("{}", sb.toString());
     }
 
 }

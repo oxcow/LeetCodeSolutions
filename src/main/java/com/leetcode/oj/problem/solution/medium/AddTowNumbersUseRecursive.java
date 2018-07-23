@@ -88,7 +88,7 @@ public class AddTowNumbersUseRecursive {
         for (Integer integer : result) {
             listNode = constructListNode(integer, listNode);
         }
-        logger.info("spend:{}ms. addTwoNumbers({}, {}) -> {}", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS), l1, l2, listNode);
+         logger.debug("spend:{}ms. addTwoNumbers({}, {}) -> {}", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS), l1, l2, listNode);
         return listNode;
     }
 }

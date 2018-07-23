@@ -88,7 +88,7 @@ public class AddTowNumbersUseStack {
         if (carry != 0) result.push(carry); // 将最后的非零进位数入栈
 
         ListNode listNode = convertStackToListNode(result);
-        logger.info("spend:{}ms. addTwoNumbers({}, {}) -> {}", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS), l1, l2, listNode);
+         logger.debug("spend:{}ms. addTwoNumbers({}, {}) -> {}", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS), l1, l2, listNode);
         return listNode;
     }
 }

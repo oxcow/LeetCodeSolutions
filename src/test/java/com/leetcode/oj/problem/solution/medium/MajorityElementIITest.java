@@ -25,7 +25,7 @@ public class MajorityElementIITest {
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElement(new int[]{2, 2}).toArray());
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElement(new int[]{2, 2}).toArray());
 
-        logger.info("testMajorityElement spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testMajorityElement spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
 
     }
 
@@ -42,7 +42,7 @@ public class MajorityElementIITest {
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMapLambda(new int[]{2, 2}).toArray());
 
 
-        logger.info("testMajorityElementUseMapLambda spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testMajorityElementUseMapLambda spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
     @Test
     public void testMajorityElementUseMap() throws Exception {
@@ -57,6 +57,6 @@ public class MajorityElementIITest {
         Assert.assertArrayEquals(new Object[]{2}, majorityElementII.majorityElementUseMap(new int[]{2, 2}).toArray());
 
 
-        logger.info("testMajorityElementUseMap spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testMajorityElementUseMap spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 }

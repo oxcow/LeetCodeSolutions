@@ -75,7 +75,7 @@ public class ReplaceWords {
         }
         str = replaceWordsSerial(dict, words);
 
-        logger.info("dict size: {}, sentence words number: {}, forceSerial? {}, spend: {}ms"
+         logger.debug("dict size: {}, sentence words number: {}, forceSerial? {}, spend: {}ms"
                 , dict.size(), words.length, forceSerial, stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
         return str;
     }
@@ -133,7 +133,7 @@ public class ReplaceWords {
         List<String> words = Arrays.stream(word).collect(Collectors.toList());
 
         int segments = words.size() / cpuCores + 1;
-        logger.info("dict size: {}, words size: {}, cpu cores: {}, segments: {}", dict.size(), words.size(), cpuCores, segments);
+         logger.debug("dict size: {}, words size: {}, cpu cores: {}, segments: {}", dict.size(), words.size(), cpuCores, segments);
 
         Map<Integer, String> segmentMap = new ConcurrentHashMap<>();
 
@@ -144,13 +144,13 @@ public class ReplaceWords {
             logger.debug("get sub words from {} to {}", from, to);
 
             final List<String> subWords = words.subList(from, to);
-            logger.info("get sub words from {} to {}, sub: {}", from, to, subWords);
+             logger.debug("get sub words from {} to {}, sub: {}", from, to, subWords);
 
             final int segmentNo = i + 1;
             executorService.submit(() -> {
                 segmentMap.put(segmentNo, coreReplaceWords(dicts, subWords));
                 countDownLatch.countDown();
-                logger.info("segment no: {}, result: {}", segmentNo, subWords);
+                 logger.debug("segment no: {}, result: {}", segmentNo, subWords);
             });
         }
 
@@ -159,7 +159,7 @@ public class ReplaceWords {
         } catch (InterruptedException e) {
             logger.error("{},cause: {}", e.getMessage(), e);
         }
-        logger.info("finally segments map: {}", segmentMap);
+         logger.debug("finally segments map: {}", segmentMap);
 
         StringBuilder sb = new StringBuilder();
         segmentMap.keySet().stream().sorted().forEach(k -> {
@@ -168,7 +168,7 @@ public class ReplaceWords {
 
         sb.deleteCharAt(sb.length() - 1);
 
-        logger.info("finally return string: {}", sb.toString());
+         logger.debug("finally return string: {}", sb.toString());
 
         return sb.toString();
     }

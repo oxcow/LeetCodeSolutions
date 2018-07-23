@@ -69,7 +69,7 @@ public final class BigDataReader {
         } catch (Exception e) {
 
         } finally {
-            logger.info("get big string array, size:{}, spend:{}ms"
+             logger.debug("get big string array, size:{}, spend:{}ms"
                     , bigStrings == null ? 0 : bigStrings.length
                     , stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
         }
@@ -95,7 +95,7 @@ public final class BigDataReader {
         } catch (Exception e) {
 
         } finally {
-            logger.info("get big num array, size:{}, spend:{}ms"
+             logger.debug("get big num array, size:{}, spend:{}ms"
                     , bigNums == null ? 0 : bigNums.length
                     , stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
         }

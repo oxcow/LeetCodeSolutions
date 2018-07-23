@@ -30,7 +30,7 @@ public class AddTowNumbersUseRecursiveTest {
     public void testGetNodeList() throws Exception {
          ListNode listNode = ListNode.creator(new Integer[]{1, 2, 3});
 
-        logger.info("{}", addTowNumbersUseRecursive.getNodeList(listNode, new ArrayList<>()));
+         logger.debug("{}", addTowNumbersUseRecursive.getNodeList(listNode, new ArrayList<>()));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class AddTowNumbersUseRecursiveTest {
         for (Integer integer : Arrays.asList(new Integer[]{11, 2, 3})) {
             listNode = addTowNumbersUseRecursive.constructListNode(integer, listNode);
         }
-        logger.info("{}", listNode);
+         logger.debug("{}", listNode);
     }
 
     private  ListNode construct(Integer[] arr) {

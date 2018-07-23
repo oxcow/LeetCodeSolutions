@@ -46,7 +46,7 @@ public class TwoSumII {
                 }
             }
         }
-        logger.info("twoSumUseLoop({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+        logger.debug("twoSumUseLoop({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
         return result;
     }
 
@@ -64,7 +64,7 @@ public class TwoSumII {
             }
         }
 
-        logger.info("towSumUseHashMap({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+        logger.debug("towSumUseHashMap({},{}) spend:{}μs", nums, target, stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
         return result;
 
     }

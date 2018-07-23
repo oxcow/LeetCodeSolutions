@@ -29,7 +29,7 @@ public class PowerOfThreeTest {
         for (int odd = 0; odd < Integer.MAX_VALUE; odd += 2) {
             boolean isFalse = powerOfThree.isPowerOfThree(odd);
             Assert.assertFalse(isFalse);
-            logger.info("{} is power of three? {}", odd, isFalse);
+             logger.debug("{} is power of three? {}", odd, isFalse);
         }
 
     }
@@ -43,7 +43,7 @@ public class PowerOfThreeTest {
             int power3Num = (int) Math.pow(3, i);
             boolean isTrue = powerOfThree.isPowerOfThree(power3Num);
             Assert.assertTrue(isTrue);
-            logger.info("{} is power of three? {}", power3Num, isTrue);
+             logger.debug("{} is power of three? {}", power3Num, isTrue);
         }
     }
 
@@ -62,13 +62,13 @@ public class PowerOfThreeTest {
             int power3Num = (int) Math.pow(3, i);
             boolean isTrue = powerOfThree.isPowerOfThreeNoLoop(power3Num);
             Assert.assertTrue(isTrue);
-            logger.info("{} is power of three? {}", power3Num, isTrue);
+             logger.debug("{} is power of three? {}", power3Num, isTrue);
         }
 
         for (int odd = 0; odd < 1000; odd += 2) {
             boolean isFalse = powerOfThree.isPowerOfThreeNoLoop(odd);
             Assert.assertFalse(isFalse);
-            logger.info("{} is power of three? {}", odd, isFalse);
+             logger.debug("{} is power of three? {}", odd, isFalse);
         }
     }
 }

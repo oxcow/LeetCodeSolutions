@@ -32,7 +32,7 @@ public class NumberOf1BitsTest {
         Assert.assertEquals(31, numberOf1Bits.hammingWeight(-3));
         Assert.assertEquals(31, numberOf1Bits.hammingWeight(-5));
 
-        logger.info("testHammingWeight spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testHammingWeight spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 
     /*@Test
@@ -56,6 +56,6 @@ public class NumberOf1BitsTest {
         Assert.assertEquals(31, numberOf1Bits.popCount_32bit(-3));
         Assert.assertEquals(31, numberOf1Bits.popCount_32bit(-5));
 
-        logger.info("testPopCount_32bit spend: {}ms",stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testPopCount_32bit spend: {}ms",stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }*/
 }

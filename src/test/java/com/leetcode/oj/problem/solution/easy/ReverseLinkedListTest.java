@@ -29,7 +29,7 @@ public class ReverseLinkedListTest {
         ListNode listNode = ListNode.creator(new Integer[]{1, 2, 3});
         Assert.assertEquals("{3,2,1}", reverseLinkedList.reverseList(listNode).toString());
 
-        logger.info("testMajorityElementUseMap spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("testMajorityElementUseMap spend: {}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
 
     }
 }

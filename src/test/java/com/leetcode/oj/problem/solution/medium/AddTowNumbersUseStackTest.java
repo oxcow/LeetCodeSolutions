@@ -31,15 +31,15 @@ public class AddTowNumbersUseStackTest {
     public void testGetListNodeValStack() throws Exception {
         ListNode listNode = ListNode.creator(new Integer[]{1, 2, 3});
         Stack<Integer> a = addTowNumbersUseStack.convertListNodeToStack(listNode);
-        logger.info("{}", a);
+         logger.debug("{}", a);
     }
 
     @Test
     public void testConvertStackToListNode() throws Exception {
         ListNode listNode = ListNode.creator(new Integer[]{1, 2, 3, 4});
         Stack<Integer> a = addTowNumbersUseStack.convertListNodeToStack(listNode);
-        logger.info("{}", a);
-        logger.info("{}", addTowNumbersUseStack.convertStackToListNode(a));
+         logger.debug("{}", a);
+         logger.debug("{}", addTowNumbersUseStack.convertStackToListNode(a));
     }
 
     @Test

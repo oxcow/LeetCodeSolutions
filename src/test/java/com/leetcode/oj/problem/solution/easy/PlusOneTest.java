@@ -29,6 +29,6 @@ public class PlusOneTest {
         Assert.assertEquals("9000", toString(plusOne.plusOne(new int[]{8, 9, 9, 9})));
         Assert.assertEquals("10000", toString(plusOne.plusOne(new int[]{9, 9, 9, 9})));
 
-        logger.info("spend: {}mico",stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+         logger.debug("spend: {}mico",stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
     }
 }

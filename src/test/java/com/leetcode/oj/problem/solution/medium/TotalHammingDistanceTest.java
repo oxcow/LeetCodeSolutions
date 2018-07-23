@@ -35,7 +35,7 @@ public class TotalHammingDistanceTest {
             nums[i] = maxVal;
         }
         Assert.assertEquals(0, thd.totalHammingDistance(nums));
-        logger.info("test normal spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("test normal spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TotalHammingDistanceTest {
         bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance2.txt", sep);
         Assert.assertEquals(725000000, thd.totalHammingDistance(bigNum));
 
-        logger.info("test big arrays spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("test big arrays spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 
     @Test
@@ -72,6 +72,6 @@ public class TotalHammingDistanceTest {
         bigNum = BigDataReader.readInt(basePath + "TotalHammingDistance2.txt", sep);
         Assert.assertEquals(725000000, thd.totalHammingDistance2(bigNum));
 
-        logger.info("test totalHammingDistance2 spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+         logger.debug("test totalHammingDistance2 spend:{}ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
     }
 }

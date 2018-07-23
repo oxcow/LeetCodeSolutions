@@ -37,10 +37,10 @@ public class JewelsAndStonesTest {
         Stopwatch stopwatch = Stopwatch.createStarted();
 
         Assert.assertEquals(1040, jas.numJewelsInStones(J, S));
-        logger.info("Loop Spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+         logger.debug("Loop Spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
 
         stopwatch.reset().start();
         Assert.assertEquals(1040, jas.numJewelsInStonesByMap(J, S));
-        logger.info("Map Spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
+         logger.debug("Map Spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MICROSECONDS));
     }
 }
