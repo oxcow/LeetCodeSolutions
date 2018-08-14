@@ -30,6 +30,7 @@ public class MergeSortedArray {
         Arrays.sort(nums1);
     }
 
+    // 归并排序
     public void merge1(int[] nums1, int m, int[] nums2, int n) {
 
         int[] subNums1 = new int[m];
@@ -38,12 +39,21 @@ public class MergeSortedArray {
             subNums1[i] = nums1[i];
         }
 
-        int idx1 = 0, idx2 = 0, i = 0;
+        int i = 0;
 
-        for (; idx1 < m && idx2 < n; ) {
+        for (int idx1 = 0, idx2 = 0; idx1 < m || idx2 < n; ) {
 
-            int num1 = subNums1[idx1];
-            int num2 = nums2[idx2];
+            if (idx1 == m) {
+                nums1[i++] = nums2[idx2++];
+                continue;
+            }
+
+            if (idx2 == n) {
+                nums1[i++] = subNums1[idx1++];
+                continue;
+            }
+
+            int num1 = subNums1[idx1], num2 = nums2[idx2];
 
             if (num1 < num2) {
                 nums1[i++] = num1;
@@ -56,17 +66,6 @@ public class MergeSortedArray {
             } else {
                 nums1[i++] = num2;
                 idx2++;
-            }
-        }
-
-        if (idx1 == m ) {
-            for (int j = idx2; j < n; j++) {
-                nums1[i++] = nums2[j];
-            }
-        }
-        if (idx2 == n) {
-            for (int j = idx1; j < m; j++) {
-                nums1[i++] = subNums1[j];
             }
         }
     }

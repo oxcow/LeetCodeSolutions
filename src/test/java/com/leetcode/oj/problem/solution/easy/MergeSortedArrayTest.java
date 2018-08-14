@@ -41,10 +41,17 @@ public class MergeSortedArrayTest {
         Assert.assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6}, num1);
 
 
-        num1 = new int[]{1, 2,3, 4, 5,  0};
+        num1 = new int[]{1, 2, 3, 4, 5, 0};
         num2 = new int[]{6};
 
         array.merge1(num1, 5, num2, 1);
         Assert.assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6}, num1);
+
+
+        num1 = new int[]{1, 2, 3, 0, 0, 0};
+        num2 = new int[]{2, 5, 6};
+
+        array.merge1(num1, 3, num2, 3);
+        Assert.assertArrayEquals(new int[]{1, 2, 2, 3, 5, 6}, num1);
     }
 }
