@@ -69,7 +69,7 @@ public class Sum3Test {
     }
 
     @Test
-    public void threeSum1() {
+    public void threeSumByDoubleLoop1() {
 
         List<List<Integer>> results = sum3.threeSumByDoubleLoop1(new int[]{-1, 0, 1, 2, -1, -4});
         Assert.assertEquals(2, results.size());

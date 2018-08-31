@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class Sum3 {
      *
      * @param nums
      * @return
+     * @see com.leetcode.oj.problem.solution.medium.Sum3#threeSumByDoubleLoop1(int[])
      */
     public List<List<Integer>> threeSumByDoubleLoop(int[] nums) {
 
@@ -78,14 +80,18 @@ public class Sum3 {
         List<Integer> eqZeros = new ArrayList<>();
         List<Integer> gtZeros = new ArrayList<>();
         List<Integer> ltZeros = new ArrayList<>();
+        BitSet ltZeroBitSet = new BitSet();
+        BitSet gtZeroBitSet = new BitSet();
 
         for (int num : nums) {
             if (num == 0) {
                 eqZeros.add(0);
             } else if (num > 0) {
                 gtZeros.add(num);
+                gtZeroBitSet.set(num);
             } else {
                 ltZeros.add(num);
+                ltZeroBitSet.set(-num);
             }
         }
 
@@ -104,11 +110,12 @@ public class Sum3 {
         // 构建大于等于零元素数组
         eqZeros.addAll(gtZeros);
         List<Integer> geZeros = eqZeros;
+        gtZeroBitSet.set(0);
 
         // ltZeros[i] + ltZeros[j] == -geZeros[n]
         for (int i = 0; i < ltZeros.size(); i++) {
             for (int j = i + 1; j < ltZeros.size(); j++) {
-                if (geZeros.contains(-ltZeros.get(i) - ltZeros.get(j))) {
+                if (gtZeroBitSet.get(-ltZeros.get(i) - ltZeros.get(j))) {
                     subTreeSumMap.put(ltZeros.get(i) + "" + ltZeros.get(j)
                             , createSubTree(ltZeros.get(i), ltZeros.get(j), -ltZeros.get(i) - ltZeros.get(j)));
                 }
@@ -118,7 +125,7 @@ public class Sum3 {
         // geZeros[i] + geZeros[j] == -ltZeros[n]
         for (int i = 0; i < geZeros.size(); i++) {
             for (int j = i + 1; j < geZeros.size(); j++) {
-                if (ltZeros.contains(-geZeros.get(i) - geZeros.get(j))) {
+                if (ltZeroBitSet.get(geZeros.get(i) + geZeros.get(j))) {
                     subTreeSumMap.put(geZeros.get(i) + "" + geZeros.get(j)
                             , createSubTree(-geZeros.get(i) - geZeros.get(j), geZeros.get(i), geZeros.get(j)));
                 }
@@ -148,14 +155,18 @@ public class Sum3 {
         List<Integer> eqZeros = new ArrayList<>();
         List<Integer> gtZeros = new ArrayList<>();
         List<Integer> ltZeros = new ArrayList<>();
+        BitSet ltZeroBitSet = new BitSet();
+        BitSet gtZeroBitSet = new BitSet();
 
         for (int num : nums) {
             if (num == 0) {
                 eqZeros.add(0);
             } else if (num > 0) {
                 gtZeros.add(num);
+                gtZeroBitSet.set(num);
             } else {
                 ltZeros.add(num);
+                ltZeroBitSet.set(-num);
             }
         }
 
@@ -165,6 +176,7 @@ public class Sum3 {
             if (eqZeros.size() > 2)
                 result.add(createSubTree(0, 0, 0));
             gtZeros.add(0);
+            gtZeroBitSet.set(0);
         }
 
         Integer a = null, b = null;
@@ -177,7 +189,7 @@ public class Sum3 {
                 if (ltZeros.get(j).equals(b)) { // 下一个元素与前一个元素相同时，则组层元组与之前重复
                     continue;
                 }
-                if (gtZeros.contains(-ltZeros.get(i) - ltZeros.get(j))) {
+                if (gtZeroBitSet.get(-ltZeros.get(i) - ltZeros.get(j))) {
                     a = ltZeros.get(i);
                     b = ltZeros.get(j);
                     result.add(createSubTree(ltZeros.get(i), ltZeros.get(j), -ltZeros.get(i) - ltZeros.get(j)));
@@ -195,7 +207,7 @@ public class Sum3 {
                 if (gtZeros.get(j).equals(b)) {
                     continue;
                 }
-                if (ltZeros.contains(-gtZeros.get(i) - gtZeros.get(j))) {
+                if (ltZeroBitSet.get(gtZeros.get(i) + gtZeros.get(j))) {
                     a = gtZeros.get(i);
                     b = gtZeros.get(j);
                     result.add(createSubTree(-gtZeros.get(i) - gtZeros.get(j), gtZeros.get(i), gtZeros.get(j)));
