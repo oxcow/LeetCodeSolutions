@@ -1,7 +1,9 @@
 package com.leetcode.oj.problem.solution.medium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * URL: <a href="https://leetcode.com/problems/bulls-and-cows/description/">Bulls and Cows</a>
@@ -37,23 +39,27 @@ public class BullsAndCows {
         int bulls = 0;
 
         List<Character> guessCows = new ArrayList<>();
-        List<Character> secretCows = new ArrayList<>();
+
+        Map<Character, Integer> secretCows = new HashMap<>();
 
         for (int i = 0; i < secretChars.length; i++) {
             if (secretChars[i] == guessChars[i]) {
                 bulls++;
             } else {
                 guessCows.add(guessChars[i]);
-                secretCows.add(secretChars[i]);
+                secretCows.put(secretChars[i], secretCows.getOrDefault(secretChars[i], 0) + 1);
             }
         }
 
         int cows = 0;
 
         for (char guessChar : guessCows) {
-            if (secretCows.contains(guessChar)) {
+
+            int secs = secretCows.getOrDefault(guessChar, 0);
+
+            if (secs != 0) {
                 cows++;
-                secretCows.remove((Character) guessChar);
+                secretCows.put(guessChar, secs - 1);
             }
         }
 
