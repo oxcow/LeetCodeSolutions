@@ -36,4 +36,17 @@ public class TopKFrequentWordsTest {
                 , topK.topKFrequent1(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}, 4).toArray());
     }
 
+    @Test
+    public void topKFrequentByStream() throws Exception {
+        TopKFrequentWords topK = new TopKFrequentWords();
+
+        Assert.assertArrayEquals(Lists.newArrayList("i", "love", "coding").toArray()
+                , topK.topKFrequentByStream(new String[]{"i", "love", "leetcode", "i", "love", "coding"}, 3).toArray());
+
+        Assert.assertArrayEquals(Lists.newArrayList("i", "love").toArray()
+                , topK.topKFrequentByStream(new String[]{"i", "love", "leetcode", "i", "love", "coding"}, 2).toArray());
+
+        Assert.assertArrayEquals(Lists.newArrayList("the", "is", "sunny", "day").toArray()
+                , topK.topKFrequentByStream(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}, 4).toArray());
+    }
 }

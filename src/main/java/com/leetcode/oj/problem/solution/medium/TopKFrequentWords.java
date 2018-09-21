@@ -1,10 +1,20 @@
 package com.leetcode.oj.problem.solution.medium;
 
 import com.google.common.base.Stopwatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * URL: <a href="https://leetcode.com/problems/top-k-frequent-words/description/">Top K Frequent Words</a>
@@ -30,8 +40,12 @@ import java.util.stream.Collectors;
  * Try to solve it in O(n log k) time and O(n) extra space.
  * <p>
  * Created by wli on 2018-01-30.
+ *
+ * @see TopKFrequentElements
  */
 public class TopKFrequentWords {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TopKFrequentWords.class);
 
     // TODO: 太慢需要优化
     // 最普通的处理方式
@@ -64,7 +78,7 @@ public class TopKFrequentWords {
                     innerList = innerList.size() >= k ? innerList.subList(0, k) : innerList;
                     result.addAll(innerList);
                 });
-        System.out.println(String.format("spend: %d ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS)));
+        LOGGER.debug("spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
         return result.subList(0, k);
     }
 
@@ -94,7 +108,24 @@ public class TopKFrequentWords {
                 break;
             }
         }
-        System.out.println(String.format("spend1: %d ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS)));
+        LOGGER.debug("spend1: {} ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
         return result.subList(0, k);
+    }
+
+    // 代码最少，但还是不够快
+    public List<String> topKFrequentByStream(String[] words, int k) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+
+        Map<String, Integer> frequents = Stream.of(words)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.reducing(0, e -> 1, Integer::sum)));
+
+        List<String> candidates = new ArrayList(frequents.keySet());
+
+        Collections.sort(candidates, (k1, k2) -> frequents.get(k1).equals(frequents.get(k2)) ?
+                k1.compareTo(k2) : frequents.get(k2) - (frequents.get(k1)));
+
+
+        LOGGER.debug("topKFrequentByStream Spend: {} ms", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+        return candidates.subList(0, k);
     }
 }
