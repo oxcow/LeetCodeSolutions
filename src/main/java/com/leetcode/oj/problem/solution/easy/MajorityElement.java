@@ -1,7 +1,5 @@
 package com.leetcode.oj.problem.solution.easy;
 
-import com.sun.corba.se.impl.naming.cosnaming.NamingUtils;
-
 import java.util.Arrays;
 
 /**

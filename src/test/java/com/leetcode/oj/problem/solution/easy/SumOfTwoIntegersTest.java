@@ -2,9 +2,6 @@ package com.leetcode.oj.problem.solution.easy;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sun.reflect.annotation.ExceptionProxy;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by leeyee on 2017/5/13.
