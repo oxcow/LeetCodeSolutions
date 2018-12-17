@@ -54,4 +54,32 @@ public class ValidMountainArray {
 
         return !uphill;
     }
+
+    public boolean validMountainArray1(int[] A) {
+
+        if (A.length < 3 || A[1] <= A[0]) return false;
+
+        int uphillIndex = 1;
+        for (int up = 2; up < A.length; up++) {
+
+            if (A[up] == A[up - 1]) return false;
+
+            if (A[up] < A[up - 1]) break;
+
+            uphillIndex = up;
+        }
+
+        if (uphillIndex == A.length - 1) return false;
+
+        int downhillIndex = -1;
+        for (int down = uphillIndex + 1; down < A.length; down++) {
+
+            if (A[down] == A[down - 1]) return false;
+
+            if (A[down] > A[down - 1]) break;
+
+            downhillIndex = down;
+        }
+        return downhillIndex == A.length - 1;
+    }
 }

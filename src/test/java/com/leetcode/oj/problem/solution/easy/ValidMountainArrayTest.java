@@ -16,4 +16,16 @@ public class ValidMountainArrayTest {
         Assert.assertFalse(array.validMountainArray(new int[]{5, 4, 3, 2, 1}));
         Assert.assertFalse(array.validMountainArray(new int[]{5, 4, 3, 2, 1, 0, 1}));
     }
+
+    @Test
+    public void validMountainArray1() {
+        ValidMountainArray array = new ValidMountainArray();
+        Assert.assertFalse(array.validMountainArray1(new int[]{2, 1}));
+        Assert.assertFalse(array.validMountainArray1(new int[]{3, 5, 5}));
+        Assert.assertTrue(array.validMountainArray1(new int[]{0, 3, 2, 1}));
+        Assert.assertTrue(array.validMountainArray1(new int[]{1, 2, 3, 4, 5, 4, 3, 2, 1}));
+        Assert.assertFalse(array.validMountainArray1(new int[]{1, 2, 3, 4, 5}));
+        Assert.assertFalse(array.validMountainArray1(new int[]{5, 4, 3, 2, 1}));
+        Assert.assertFalse(array.validMountainArray1(new int[]{5, 4, 3, 2, 1, 0, 1}));
+    }
 }
