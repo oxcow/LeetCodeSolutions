@@ -2,6 +2,25 @@ package com.leetcode.oj.problem.solution.easy;
 
 import java.util.stream.IntStream;
 
+/**
+ * URL: <a href="https://leetcode.com/problems/minimum-moves-to-equal-array-elements/">Minimum Moves to Equal Array Elements</a>
+ * Given a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.
+ * <p>
+ * Example:
+ * <p>
+ * Input:
+ * [1,2,3]
+ * <p>
+ * Output:
+ * 3
+ * <p>
+ * Explanation:
+ * Only three moves are needed (remember each move increments two elements):
+ * <p>
+ * [1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]
+ *
+ * TODO: need to be optimized!
+ */
 public class MinimumMovesToEqualArrayElements {
     private int move(int... nums) {
         int max = nums[0];
@@ -61,7 +80,6 @@ public class MinimumMovesToEqualArrayElements {
      * Step-3. 如果 A 中所有元素相同，则最小移动数为　A[0] * A.length;
      * Step-4. 如果 A 中所有元素不同，则当前移动数为　Max(A), 然后继续调用 Step-4
      */
-
     public int[] newArray(int max, int maxIdx, int... nums) {
         int newArray[] = new int[nums.length - 1];
         int ni = 0;
@@ -85,11 +103,5 @@ public class MinimumMovesToEqualArrayElements {
             }
         }
         return info;
-    }
-
-    public static void main(String[] args) {
-        MinimumMovesToEqualArrayElements f = new MinimumMovesToEqualArrayElements();
-        int info[] = f.getInfo(new int[]{8, 1, 1, 1});
-        IntStream.of(info).forEach(System.out::println);
     }
 }
