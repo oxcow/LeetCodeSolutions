@@ -1,5 +1,6 @@
 package com.leetcode.oj.problem.solution.easy;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,5 +57,34 @@ public class RansomNote {
             }
         }
         return true;
+    }
+
+    public boolean canConstruct1(String ransomNote, String magazine) {
+        if (ransomNote == null || magazine == null) return false;
+
+        int rLen = ransomNote.length();
+        int mLen = magazine.length();
+
+        if (rLen == 0) return true;
+        if (mLen == 0 || rLen > mLen) return false;
+
+        char[] ransomNotes = ransomNote.toCharArray();
+        Arrays.sort(ransomNotes);
+
+        char[] magazines = magazine.toCharArray();
+        Arrays.sort(magazines);
+
+        int i = 0, j = 0, match = 0;
+
+        while (i < rLen && j < mLen) {
+            if (ransomNotes[i] == magazines[j]) {
+                ++match;
+                ++i;
+            } else if (j == mLen - 1) {
+                return false;
+            }
+            ++j;
+        }
+        return match == rLen;
     }
 }
